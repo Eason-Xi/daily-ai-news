@@ -46,6 +46,17 @@ async function readJsonBody(req, maxBytes = 1024 * 1024) {
 }
 
 /**
+ * 校验 AIHOT 只读代理 endpoint 白名单，防止 SSRF 与路径穿透。
+ */
+export function isAllowedAihotEndpoint(rawEndpoint) {
+  const endpoint = String(rawEndpoint || '').trim();
+  if (!endpoint.startsWith('/') || endpoint.includes('..') || endpoint.includes('//')) {
+    return false;
+  }
+  return /^\/(dailies(\/(\d{4}-\d{2}-\d{2}|latest))?|weeklies(\/(\d{4}-W\d{2}|latest))?|hot-topics|stories\/[a-zA-Z0-9_-]{8,64}|items(\?[a-zA-Z0-9_=&%.\-+]*)?)$/.test(endpoint);
+}
+
+/**
  * 防御 SSRF：仅允许公网 http/https 目标地址。
  */
 export function isSafePublicHttpUrl(rawUrl) {
@@ -100,6 +111,7 @@ export function createAppServer({
   });
 
   let syncInFlight = null;
+  const aihotProxyCache = new Map();
   async function runSync() {
     if (syncInFlight) return syncInFlight;
     syncInFlight = (async () => {
@@ -215,6 +227,48 @@ export function createAppServer({
             ...fallback,
             warning: '目标网站暂不支持自动提取或访问超时，已保留域名，请手动补充标题与摘要。'
           });
+        }
+      }
+
+      if (req.method === 'GET' && pathname === '/api/aihot') {
+        const endpoint = reqUrl.searchParams.get('endpoint') || '';
+        if (!isAllowedAihotEndpoint(endpoint)) {
+          return sendJson(res, 400, { error: '不支持的 AIHOT 接口路径' });
+        }
+        const targetUrl = `https://aihot.news/api/v1${endpoint}`;
+        const now = Date.now();
+        const cached = aihotProxyCache.get(targetUrl);
+        if (cached && now - cached.fetchedAt < 60_000) {
+          return sendJson(res, 200, cached.data);
+        }
+        const headers = {
+          Accept: 'application/json',
+          'User-Agent': 'DailyAINewsCollector/1.0 (+https://github.com/Eason-Xi/daily-ai-news)'
+        };
+        if (cached?.etag) {
+          headers['If-None-Match'] = cached.etag;
+        }
+        try {
+          const upstream = await fetch(targetUrl, {
+            headers,
+            signal: AbortSignal.timeout(8000)
+          });
+          if (upstream.status === 304 && cached) {
+            cached.fetchedAt = now;
+            return sendJson(res, 200, cached.data);
+          }
+          if (!upstream.ok) {
+            return sendJson(res, upstream.status, { error: `AIHOT 上游返回 ${upstream.status}` });
+          }
+          const data = await upstream.json();
+          const etag = upstream.headers.get('etag') || cached?.etag || null;
+          aihotProxyCache.set(targetUrl, { etag, data, fetchedAt: now });
+          return sendJson(res, 200, data);
+        } catch (err) {
+          if (cached) {
+            return sendJson(res, 200, cached.data);
+          }
+          return sendJson(res, 502, { error: `请求 AIHOT 失败：${err?.message || '网络异常'}` });
         }
       }
 

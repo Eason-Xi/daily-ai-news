@@ -4,7 +4,9 @@
 
 ## 核心特性
 
-- **按日自动采集与增量归档**：服务启动后自动并发采集全球及中文权威 AI 信源（Hacker News AI、Hugging Face Daily Papers、arXiv cs.AI、OpenAI News、TechCrunch AI、The Verge AI、WIRED AI、MIT Tech Review AI、量子位、爱范儿 AI 精选），并每 30 分钟后台自动增量同步去重写入 `data/archive.json`，历史每一天的新闻持久沉淀不丢失。
+- **精编 AI 日报 & 周报（接入 AIHOT）**：集成 [AIHOT (aihot.news)](https://aihot.news/) 每日 08:00 发布的精编中文 AI 日报与每周回顾，含头版头条导读、分栏目列表、AI 质量评分与入选理由，支持一键「复制整期 Markdown」或将重点条目收入个人简报册。
+- **48h 热点事件榜与深度综述**：实时追踪多信源共同讨论的 Top 10 AI 热点事件，点击任意热点即可展开多段式 AI 事件综述与完整报道演化时间线。
+- **按日自动采集与增量归档**：后端与 GitHub Actions 并发采集全球及中文 10 大 AI 信源（Hacker News AI、Hugging Face Daily Papers、arXiv cs.AI、OpenAI News、TechCrunch AI、The Verge AI、WIRED AI、MIT Tech Review AI、量子位、爱范儿 AI 精选），增量去重写入 `data/archive.json`，历史每一天的新闻持久沉淀不丢失。
 - **每日时间轴与跨日全局库**：顶部日期芯片与日历选择器随时切换查看每一天的 AI 情报，也可一键进入「跨日全局库」进行跨天关键词搜索。
 - **五维智能分类与热点雷达**：自动划分「大模型与前沿」「Agent 与产品」「开源与论文」「产业与资本」「安全与政策」，并实时提取当日高频实体词胶囊。
 - **按日独立简报册与智能录入**：每一天都有专属的精选收集箱与当日观察导语；支持粘贴外部文章 URL 一键提取标题摘要入库，或为每条新闻编写点评批注并上下调整顺位。

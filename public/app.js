@@ -1,3 +1,9 @@
+import {
+  AIHOT_CATEGORY_LABELS,
+  createAihotClient,
+  normalizeAihotItemToArticle
+} from './aihot-client.js';
+
 const CATEGORY_LABELS = {
   model: '大模型与前沿',
   agent: 'Agent 与产品',
@@ -62,6 +68,7 @@ const THEME_STORAGE_KEY = 'daily_ai_theme_v1';
 
 const state = {
   mode: 'server', // 'server' | 'pages' | 'offline'
+  activeView: 'daily', // 'daily' | 'aihot' | 'hot' | 'rss'
   today: getLocalDateKey(new Date()),
   selectedDate: getLocalDateKey(new Date()),
   daysOverview: [],
@@ -79,9 +86,34 @@ const state = {
     search: '',
     keyword: ''
   },
+  aihot: {
+    editionType: 'daily', // 'daily' | 'weekly'
+    dailiesList: [],
+    weekliesList: [],
+    selectedDailyId: 'latest',
+    selectedWeeklyId: 'latest',
+    currentReport: null,
+    editionLoading: false,
+    editionError: '',
+    items: [],
+    itemsLoading: false,
+    itemsError: '',
+    itemsMode: 'selected',
+    itemsWindow: '24h',
+    itemsCategory: '',
+    itemsSearch: '',
+    hotTopics: [],
+    hotLoading: false,
+    hotError: '',
+    activeStory: null
+  },
+  articleRegistry: new Map(),
   exportFormat: 'markdown',
-  summarySaveTimer: null
+  summarySaveTimer: null,
+  aihotSearchTimer: null
 };
+
+let aihotClient = createAihotClient({ ttlMs: 60_000 });
 
 const els = {
   daemonStatusText: document.getElementById('daemonStatusText'),
@@ -97,6 +129,15 @@ const els = {
   timelineChips: document.getElementById('timelineChips'),
   datePickerInput: document.getElementById('datePickerInput'),
   allDaysToggleBtn: document.getElementById('allDaysToggleBtn'),
+  mainViewTabs: document.getElementById('mainViewTabs'),
+  dailyToolbar: document.getElementById('dailyToolbar'),
+  aihotToolbar: document.getElementById('aihotToolbar'),
+  rssToolbar: document.getElementById('rssToolbar'),
+  editionSelect: document.getElementById('editionSelect'),
+  collectEntireEditionBtn: document.getElementById('collectEntireEditionBtn'),
+  copyEditionMarkdownBtn: document.getElementById('copyEditionMarkdownBtn'),
+  aihotCategoryTabs: document.getElementById('aihotCategoryTabs'),
+  aihotSearchInput: document.getElementById('aihotSearchInput'),
   categoryTabs: document.getElementById('categoryTabs'),
   langFilterSelect: document.getElementById('langFilterSelect'),
   sourceFilterSelect: document.getElementById('sourceFilterSelect'),
@@ -104,6 +145,9 @@ const els = {
   hotChips: document.getElementById('hotChips'),
   feedHeading: document.getElementById('feedHeading'),
   feedSubheading: document.getElementById('feedSubheading'),
+  dailyViewContainer: document.getElementById('dailyViewContainer'),
+  aihotViewContainer: document.getElementById('aihotViewContainer'),
+  hotViewContainer: document.getElementById('hotViewContainer'),
   newsList: document.getElementById('newsList'),
   briefSidebar: document.getElementById('briefSidebar'),
   mobileOpenBriefBtn: document.getElementById('mobileOpenBriefBtn'),
@@ -116,6 +160,8 @@ const els = {
   openExportModalBtn: document.getElementById('openExportModalBtn'),
   downloadArchiveBtn: document.getElementById('downloadArchiveBtn'),
   clearDayBriefBtn: document.getElementById('clearDayBriefBtn'),
+  hotMiniList: document.getElementById('hotMiniList'),
+  jumpToHotViewBtn: document.getElementById('jumpToHotViewBtn'),
   lastSyncText: document.getElementById('lastSyncText'),
   sourceRadarList: document.getElementById('sourceRadarList'),
   manualModal: document.getElementById('manualModal'),
@@ -136,6 +182,11 @@ const els = {
   exportIncludeAllFallback: document.getElementById('exportIncludeAllFallback'),
   downloadMdBtn: document.getElementById('downloadMdBtn'),
   copyExportBtn: document.getElementById('copyExportBtn'),
+  storyModal: document.getElementById('storyModal'),
+  storyModalTitle: document.getElementById('storyModalTitle'),
+  storyModalMeta: document.getElementById('storyModalMeta'),
+  storyModalBody: document.getElementById('storyModalBody'),
+  storyAihotLink: document.getElementById('storyAihotLink'),
   toastRegion: document.getElementById('toastRegion')
 };
 
@@ -208,6 +259,14 @@ function getActiveCuratedDate() {
   return state.selectedDate === 'all' ? state.today : state.selectedDate;
 }
 
+function registerArticles(list = []) {
+  for (const art of list) {
+    if (art && art.id) {
+      state.articleRegistry.set(art.id, art);
+    }
+  }
+}
+
 /* ---------- 浅色 / 深色主题 ---------- */
 function initTheme() {
   const saved = localStorage.getItem(THEME_STORAGE_KEY);
@@ -271,17 +330,20 @@ async function apiFetchJson(url, options = {}) {
 async function loadInitialData() {
   if (window.location.protocol === 'file:') {
     activateOfflineMode();
+    initAihotFeatures();
     return;
   }
 
   try {
     const overview = await apiFetchJson('./api/days');
     state.mode = 'server';
+    aihotClient = createAihotClient({ fallbackBaseUrl: './api/aihot', ttlMs: 60_000 });
     els.runtimeModeBadge.hidden = true;
     els.daemonStatusText.textContent = '每日 AI 情报持续归档守护中';
     applyOverview(overview);
     if (!state.selectedDate) state.selectedDate = state.today;
     await loadDay(state.selectedDate);
+    initAihotFeatures();
     return;
   } catch {
     // try GitHub Pages static snapshot mode
@@ -290,8 +352,10 @@ async function loadInitialData() {
   try {
     const staticOverview = await apiFetchJson('./api-static/days.json');
     await activatePagesMode(staticOverview);
+    initAihotFeatures();
   } catch {
     activateOfflineMode();
+    initAihotFeatures();
   }
 }
 
@@ -327,6 +391,7 @@ function buildPagesOverviewWithLocal(baseOverview) {
 
 async function activatePagesMode(staticOverview) {
   state.mode = 'pages';
+  aihotClient = createAihotClient({ ttlMs: 60_000 });
   state.pagesBaseOverview = staticOverview;
   els.runtimeModeBadge.hidden = false;
   els.runtimeModeBadge.textContent = 'GitHub Pages 云端归档';
@@ -338,6 +403,7 @@ async function activatePagesMode(staticOverview) {
 
 function activateOfflineMode() {
   state.mode = 'offline';
+  aihotClient = createAihotClient({ ttlMs: 60_000 });
   els.runtimeModeBadge.hidden = false;
   els.runtimeModeBadge.textContent = '本地静态模式';
   els.daemonStatusText.textContent = '浏览器离线直连模式（数据存于本机浏览器）';
@@ -384,6 +450,7 @@ function loadOfflineDay(dateKey) {
       .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
     state.curated = store.curatedByDate[dateKey] || { dailySummary: '', items: [] };
   }
+  registerArticles(state.articles);
   state.hotKeywords = computeClientKeywords(state.articles);
   renderAll();
 }
@@ -415,10 +482,7 @@ async function loadDay(dateKey) {
 
   if (state.mode === 'offline') {
     loadOfflineDay(dateKey);
-    return;
-  }
-
-  if (state.mode === 'pages') {
+  } else if (state.mode === 'pages') {
     const localStore = readLocalBrowserStore(false);
     let remoteDetail = { articles: [], hotKeywords: [] };
     try {
@@ -433,20 +497,235 @@ async function loadDay(dateKey) {
       ? Object.values(localStore.articlesByDate || {}).flat()
       : (localStore.articlesByDate?.[dateKey] || []);
     state.articles = mergeDistinctClientArticles(remoteDetail.articles || [], localArticles);
+    registerArticles(state.articles);
     state.hotKeywords = Array.isArray(remoteDetail.hotKeywords) && remoteDetail.hotKeywords.length > 0
       ? remoteDetail.hotKeywords
       : computeClientKeywords(state.articles);
     const curatedKey = dateKey === 'all' ? state.today : dateKey;
     state.curated = localStore.curatedByDate?.[curatedKey] || { dailySummary: '', items: [] };
     renderAll();
-    return;
+  } else {
+    const detail = await apiFetchJson(`./api/day?date=${encodeURIComponent(dateKey)}`);
+    state.articles = Array.isArray(detail.articles) ? detail.articles : [];
+    registerArticles(state.articles);
+    state.hotKeywords = Array.isArray(detail.hotKeywords) ? detail.hotKeywords : [];
+    state.curated = detail.curated || { dailySummary: '', items: [] };
+    renderAll();
   }
 
-  const detail = await apiFetchJson(`./api/day?date=${encodeURIComponent(dateKey)}`);
-  state.articles = Array.isArray(detail.articles) ? detail.articles : [];
-  state.hotKeywords = Array.isArray(detail.hotKeywords) ? detail.hotKeywords : [];
-  state.curated = detail.curated || { dailySummary: '', items: [] };
-  renderAll();
+  // 与 AIHOT 每日日报双向联动：若在日报模式且目标日期存在日报，同步切换
+  if (state.activeView === 'daily' && state.aihot.editionType === 'daily' && dateKey !== 'all') {
+    const matched = state.aihot.dailiesList.find((d) => d.date === dateKey);
+    if (matched) {
+      loadAihotEdition('daily', dateKey);
+    }
+  }
+}
+
+/* ---------- AIHOT 数据加载（日报 / 周报 / 精选流 / 48h 热点） ---------- */
+async function initAihotFeatures() {
+  await Promise.allSettled([
+    loadAihotIndexAndEdition(),
+    loadAihotHotTopics()
+  ]);
+}
+
+async function loadAihotIndexAndEdition() {
+  state.aihot.editionLoading = true;
+  state.aihot.editionError = '';
+  renderDailyView();
+
+  try {
+    const [dailiesRes, weekliesRes] = await Promise.allSettled([
+      aihotClient.getDailies(),
+      aihotClient.getWeeklies()
+    ]);
+
+    if (dailiesRes.status === 'fulfilled') {
+      state.aihot.dailiesList = Array.isArray(dailiesRes.value?.items) ? dailiesRes.value.items : [];
+    }
+    if (weekliesRes.status === 'fulfilled') {
+      state.aihot.weekliesList = Array.isArray(weekliesRes.value?.items) ? weekliesRes.value.items : [];
+    }
+
+    renderEditionSelect();
+    const initialId = state.aihot.editionType === 'daily'
+      ? state.aihot.selectedDailyId
+      : state.aihot.selectedWeeklyId;
+    await loadAihotEdition(state.aihot.editionType, initialId);
+  } catch (err) {
+    state.aihot.editionLoading = false;
+    state.aihot.editionError = `暂时无法连接 AIHOT 日报服务：${err.message}`;
+    renderDailyView();
+  }
+}
+
+async function loadAihotEdition(type, targetId = 'latest') {
+  state.aihot.editionType = type;
+  state.aihot.editionLoading = true;
+  state.aihot.editionError = '';
+  if (type === 'daily') state.aihot.selectedDailyId = targetId;
+  else state.aihot.selectedWeeklyId = targetId;
+
+  renderEditionSelect();
+  renderDailyView();
+
+  try {
+    const res = type === 'daily'
+      ? await aihotClient.getDaily(targetId)
+      : await aihotClient.getWeekly(targetId);
+    const report = res?.report || null;
+    state.aihot.currentReport = report;
+
+    if (report?.sections) {
+      const reportDate = report.date || report.periodEnd || state.today;
+      for (const sec of report.sections) {
+        const mapped = (sec.items || [])
+          .map((item) => normalizeAihotItemToArticle(item, reportDate, sec.label))
+          .filter(Boolean);
+        registerArticles(mapped);
+      }
+    }
+  } catch (err) {
+    state.aihot.currentReport = null;
+    state.aihot.editionError = `加载${type === 'daily' ? '日报' : '周报'}失败：${err.message}`;
+  } finally {
+    state.aihot.editionLoading = false;
+    if (state.activeView === 'daily') {
+      renderFeedHeader();
+      renderDailyView();
+    }
+  }
+}
+
+async function loadAihotItems() {
+  state.aihot.itemsLoading = true;
+  state.aihot.itemsError = '';
+  if (state.activeView === 'aihot') {
+    renderFeedHeader();
+    renderAihotItemsView();
+  }
+
+  try {
+    const res = await aihotClient.getItems({
+      mode: state.aihot.itemsMode,
+      window: state.aihot.itemsWindow,
+      category: state.aihot.itemsCategory,
+      q: state.aihot.itemsSearch,
+      limit: 30
+    });
+    const rawItems = Array.isArray(res?.items) ? res.items : [];
+    const normalized = rawItems
+      .map((item) => normalizeAihotItemToArticle(item))
+      .filter(Boolean);
+    state.aihot.items = normalized;
+    registerArticles(normalized);
+  } catch (err) {
+    state.aihot.items = [];
+    state.aihot.itemsError = `加载 AIHOT 精选流失败：${err.message}`;
+  } finally {
+    state.aihot.itemsLoading = false;
+    if (state.activeView === 'aihot') {
+      renderFeedHeader();
+      renderAihotItemsView();
+    }
+  }
+}
+
+async function loadAihotHotTopics() {
+  state.aihot.hotLoading = true;
+  state.aihot.hotError = '';
+  if (state.activeView === 'hot') {
+    renderFeedHeader();
+    renderHotEventsView();
+  }
+
+  try {
+    const res = await aihotClient.getHotTopics();
+    state.aihot.hotTopics = Array.isArray(res?.items) ? res.items : [];
+  } catch (err) {
+    state.aihot.hotTopics = [];
+    state.aihot.hotError = `加载 48h 热点榜单失败：${err.message}`;
+  } finally {
+    state.aihot.hotLoading = false;
+    renderHotMiniPanel();
+    if (state.activeView === 'hot') {
+      renderFeedHeader();
+      renderHotEventsView();
+    }
+  }
+}
+
+async function openStoryModal(publicId, fallbackTitle = '热点事件综述') {
+  els.storyModalTitle.textContent = fallbackTitle;
+  els.storyModalMeta.textContent = '正在加载事件 AI 综述与多源时间线…';
+  els.storyModalBody.innerHTML = '<div class="empty-state">正在向 AIHOT 请求最新事件脉络…</div>';
+  els.storyAihotLink.href = 'https://aihot.news/hot';
+  els.storyModal.showModal();
+
+  try {
+    const res = await aihotClient.getStory(publicId);
+    const story = res?.story;
+    if (!story) throw new Error('未获取到事件详情');
+
+    state.aihot.activeStory = story;
+    els.storyModalTitle.textContent = story.title || fallbackTitle;
+    els.storyModalMeta.textContent = `${story.sourceCount || 0} 个信源共议 · ${story.reportCount || 0} 条报道信号 · 最新更新 ${formatArticleTime(story.latestAt, true)}`;
+    els.storyAihotLink.href = safeHref(story.links?.aihot || 'https://aihot.news/hot');
+
+    const digestParagraphs = String(story.digest || '')
+      .split(/\n+/)
+      .map((p) => p.trim())
+      .filter(Boolean)
+      .map((p) => `<p>${escapeHtml(p)}</p>`)
+      .join('');
+
+    const reports = Array.isArray(story.reports) ? story.reports : [];
+    const normalizedReports = reports
+      .map((rep) => normalizeAihotItemToArticle(rep, state.today, '热点追踪'))
+      .filter(Boolean);
+    registerArticles(normalizedReports);
+
+    const timelineHtml = normalizedReports
+      .map((art) => {
+        const collected = isArticleCollected(art);
+        const link = safeHref(art.url);
+        return `
+          <div class="story-report-item">
+            <div class="story-report-meta">
+              <span class="source-badge">${escapeHtml(art.sourceName)}</span>
+              <span>${escapeHtml(formatArticleTime(art.publishedAt, true))}</span>
+            </div>
+            <h4 class="story-report-title">${escapeHtml(art.title)}</h4>
+            <p class="story-report-summary">${escapeHtml(art.summary)}</p>
+            <div class="news-card-actions">
+              <button
+                type="button"
+                class="collect-btn ${collected ? 'is-collected' : ''}"
+                data-toggle-collect="${escapeHtml(art.id)}"
+              >
+                ${collected ? '✓ 已收入当日简报' : '+ 收入简报'}
+              </button>
+              <a class="btn btn-ghost btn-sm" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">
+                阅读原文 ↗
+              </a>
+            </div>
+          </div>
+        `;
+      })
+      .join('');
+
+    els.storyModalBody.innerHTML = `
+      ${digestParagraphs ? `<div class="story-digest-box">${digestParagraphs}</div>` : ''}
+      <h4 class="story-timeline-heading">报道演化时间线（共 ${normalizedReports.length} 条）</h4>
+      <div class="story-timeline">
+        ${timelineHtml || '<div class="curated-empty">暂无具体时间线条目。</div>'}
+      </div>
+    `;
+  } catch (err) {
+    els.storyModalMeta.textContent = '加载失败';
+    els.storyModalBody.innerHTML = `<div class="empty-state">读取事件详情失败：${escapeHtml(err.message)}</div>`;
+  }
 }
 
 async function triggerSyncNow() {
@@ -455,6 +734,8 @@ async function triggerSyncNow() {
   els.syncBtnLabel.textContent = '采集中…';
 
   try {
+    aihotClient.clearCache();
+
     if (state.mode !== 'server') {
       const res = await fetch('https://hn.algolia.com/api/v1/search_by_date?query=AI%20OR%20LLM%20OR%20OpenAI&tags=story&hitsPerPage=15');
       const json = await res.json();
@@ -488,7 +769,8 @@ async function triggerSyncNow() {
       } else {
         activateOfflineMode();
       }
-      showToast(`已直连同步 ${incoming.length} 条最新 AI 资讯`);
+      await refreshActiveAihotData();
+      showToast(`已直连同步 ${incoming.length} 条 HN 资讯并刷新 AIHOT 数据`);
       return;
     }
 
@@ -497,9 +779,11 @@ async function triggerSyncNow() {
     });
     applyOverview(result.overview);
     state.articles = result.dayDetail?.articles || [];
+    registerArticles(state.articles);
     state.hotKeywords = result.dayDetail?.hotKeywords || [];
     state.curated = result.dayDetail?.curated || state.curated;
     renderAll();
+    await refreshActiveAihotData();
 
     const okSources = (result.sync?.sourceStatuses || []).filter((s) => s.status === 'ok').length;
     showToast(`同步完成：在线信源 ${okSources} 个，新增归档 ${result.sync?.addedCount || 0} 条`);
@@ -510,6 +794,17 @@ async function triggerSyncNow() {
     els.syncNowBtn.classList.remove('is-spinning');
     els.syncBtnLabel.textContent = '立即采集今日';
   }
+}
+
+async function refreshActiveAihotData() {
+  const tasks = [loadAihotHotTopics()];
+  if (state.activeView === 'daily') {
+    const id = state.aihot.editionType === 'daily' ? state.aihot.selectedDailyId : state.aihot.selectedWeeklyId;
+    tasks.push(loadAihotEdition(state.aihot.editionType, id));
+  } else if (state.activeView === 'aihot') {
+    tasks.push(loadAihotItems());
+  }
+  await Promise.allSettled(tasks);
 }
 
 /* ---------- 精选收集箱持久化 ---------- */
@@ -562,16 +857,29 @@ function toggleCollectArticle(article) {
   } else {
     items.unshift({
       ...article,
-      note: '',
+      note: article.reason || '',
       savedAt: new Date().toISOString()
     });
     showToast('已收入当日简报册');
   }
 
   state.curated = { ...state.curated, items };
-  renderNewsList();
+  syncCollectionButtonsUi();
   renderCuratedPanel();
   persistCurated();
+}
+
+function syncCollectionButtonsUi() {
+  renderActiveView();
+  if (els.storyModal.open) {
+    els.storyModalBody.querySelectorAll('[data-toggle-collect]').forEach((btn) => {
+      const art = state.articleRegistry.get(btn.dataset.toggleCollect);
+      if (!art) return;
+      const collected = isArticleCollected(art);
+      btn.classList.toggle('is-collected', collected);
+      btn.textContent = collected ? '✓ 已收入当日简报' : '+ 收入简报';
+    });
+  }
 }
 
 function moveCuratedItem(index, delta) {
@@ -588,9 +896,39 @@ function removeCuratedItem(index) {
   const items = [...(state.curated.items || [])];
   items.splice(index, 1);
   state.curated = { ...state.curated, items };
-  renderNewsList();
+  syncCollectionButtonsUi();
   renderCuratedPanel();
   persistCurated();
+}
+
+/* ---------- 视图切换 ---------- */
+function switchMainView(view) {
+  state.activeView = view;
+
+  els.mainViewTabs.querySelectorAll('.view-tab').forEach((tab) => {
+    const active = tab.dataset.view === view;
+    tab.classList.toggle('is-active', active);
+    tab.setAttribute('aria-selected', String(active));
+  });
+
+  els.dailyToolbar.hidden = view !== 'daily';
+  els.aihotToolbar.hidden = view !== 'aihot';
+  els.rssToolbar.hidden = view !== 'rss';
+
+  els.dailyViewContainer.hidden = view !== 'daily';
+  els.aihotViewContainer.hidden = view !== 'aihot';
+  els.hotViewContainer.hidden = view !== 'hot';
+  els.newsList.hidden = view !== 'rss';
+
+  if (view === 'aihot' && state.aihot.items.length === 0 && !state.aihot.itemsLoading) {
+    loadAihotItems();
+  }
+  if (view === 'hot' && state.aihot.hotTopics.length === 0 && !state.aihot.hotLoading) {
+    loadAihotHotTopics();
+  }
+
+  renderFeedHeader();
+  renderActiveView();
 }
 
 /* ---------- 渲染视图 ---------- */
@@ -599,8 +937,59 @@ function renderAll() {
   renderTimeline();
   renderSourceSelectAndRadar();
   renderHotKeywords();
-  renderNewsList();
+  renderFeedHeader();
+  renderActiveView();
   renderCuratedPanel();
+  renderHotMiniPanel();
+}
+
+function renderActiveView() {
+  if (state.activeView === 'daily') {
+    renderDailyView();
+  } else if (state.activeView === 'aihot') {
+    renderAihotItemsView();
+  } else if (state.activeView === 'hot') {
+    renderHotEventsView();
+  } else {
+    renderNewsList();
+  }
+}
+
+function renderFeedHeader() {
+  if (state.activeView === 'daily') {
+    const isDaily = state.aihot.editionType === 'daily';
+    const r = state.aihot.currentReport;
+    els.feedHeading.textContent = isDaily ? 'AIHOT 精编 AI 日报' : 'AIHOT 精编 AI 周报';
+    if (r) {
+      const period = isDaily ? `${r.date} 期` : `${r.week}（${r.periodStart} ~ ${r.periodEnd}）`;
+      const itemCount = (r.sections || []).reduce((sum, sec) => sum + (sec.items?.length || 0), 0);
+      els.feedSubheading.textContent = `${period} · 共 ${r.sections?.length || 0} 个栏目 / ${itemCount} 条核心事件 · AI 自动摘要与排序`;
+    } else {
+      els.feedSubheading.textContent = state.aihot.editionLoading ? '正在加载最新期精编内容…' : '由 AIHOT 每日 08:00 定时精编发布';
+    }
+    return;
+  }
+
+  if (state.activeView === 'aihot') {
+    const modeLabel = state.aihot.itemsMode === 'selected' ? 'AI 智能打分精选' : '全网实时动态';
+    const winLabel = state.aihot.itemsWindow === '7d' ? '近 7 天' : '近 24 小时';
+    els.feedHeading.textContent = `AIHOT ${modeLabel}`;
+    els.feedSubheading.textContent = `${winLabel} · 当前加载 ${state.aihot.items.length} 条 · 附 AI 评分与入选理由`;
+    return;
+  }
+
+  if (state.activeView === 'hot') {
+    els.feedHeading.textContent = '48h AI 热点事件榜 Top 10';
+    els.feedSubheading.textContent = '自动聚簇多信源共同讨论的核心 AI 事件 · 点击可展开多段综述与报道时间线';
+    return;
+  }
+
+  const filtered = getFilteredArticles();
+  const isAllMode = state.selectedDate === 'all';
+  els.feedHeading.textContent = isAllMode
+    ? '跨日 AI 情报总库'
+    : `${formatDayChipLabel(state.selectedDate)} · 多源 RSS 归档`;
+  els.feedSubheading.textContent = `当前显示 ${filtered.length} / ${state.articles.length} 条 · 按发布时间倒序`;
 }
 
 function renderMasthead() {
@@ -608,7 +997,7 @@ function renderMasthead() {
   const weekday = now.toLocaleDateString('zh-CN', { weekday: 'long' });
   const syncTxt = state.meta?.lastSyncAt
     ? `上次自动同步：${formatArticleTime(state.meta.lastSyncAt, true)}`
-    : '已加载每日预置归档库 · 点击「立即采集今日」获取全网最新动态';
+    : '已接入 AIHOT 精编日报 & 10 大多源 RSS 实时归档';
 
   els.todayMetaLine.textContent = `${state.today} ${weekday} · ${syncTxt}`;
   els.statTotalDays.textContent = `${state.totalDays} 天`;
@@ -619,7 +1008,7 @@ function renderMasthead() {
     const okCount = statuses.filter((s) => s.status === 'ok').length;
     els.statOnlineSources.textContent = `${okCount} / ${statuses.length}`;
   } else {
-    els.statOnlineSources.textContent = '10 源就绪';
+    els.statOnlineSources.textContent = '10 源 + AIHOT';
   }
 }
 
@@ -652,6 +1041,267 @@ function renderTimeline() {
   els.allDaysToggleBtn.classList.toggle('is-active', state.selectedDate === 'all');
 }
 
+function renderEditionSelect() {
+  const isDaily = state.aihot.editionType === 'daily';
+  const list = isDaily ? state.aihot.dailiesList : state.aihot.weekliesList;
+  const currentId = isDaily ? state.aihot.selectedDailyId : state.aihot.selectedWeeklyId;
+
+  const opts = [`<option value="latest" ${currentId === 'latest' ? 'selected' : ''}>最新一期</option>`];
+  for (const item of list) {
+    const val = isDaily ? item.date : item.week;
+    const title = isDaily ? item.leadTitle : item.headline;
+    if (!val) continue;
+    const shortTitle = title ? ` · ${title.slice(0, 22)}${title.length > 22 ? '…' : ''}` : '';
+    opts.push(
+      `<option value="${escapeHtml(val)}" ${currentId === val ? 'selected' : ''}>${escapeHtml(val)}${escapeHtml(shortTitle)}</option>`
+    );
+  }
+  els.editionSelect.innerHTML = opts.join('');
+}
+
+function renderDailyView() {
+  if (state.aihot.editionLoading) {
+    els.dailyViewContainer.innerHTML = '<div class="empty-state">正在从 AIHOT 拉取最新精编日报…</div>';
+    return;
+  }
+
+  if (state.aihot.editionError) {
+    els.dailyViewContainer.innerHTML = `<div class="empty-state">${escapeHtml(state.aihot.editionError)}</div>`;
+    return;
+  }
+
+  const report = state.aihot.currentReport;
+  if (!report) {
+    els.dailyViewContainer.innerHTML = '<div class="empty-state">暂无可展示的日报内容。</div>';
+    return;
+  }
+
+  const isDaily = state.aihot.editionType === 'daily';
+  const dateLabel = isDaily ? report.date : `${report.week} (${report.periodStart} ~ ${report.periodEnd})`;
+  const leadTitle = isDaily ? report.lead?.title : report.headline;
+  const leadParagraph = isDaily ? report.lead?.leadParagraph : report.overview;
+  const reportLink = safeHref(report.links?.aihot || 'https://aihot.news/daily');
+
+  const leadHtml = leadTitle ? `
+    <article class="lead-banner">
+      <div class="lead-eyebrow">
+        <span class="lead-tag">${isDaily ? '今日头版头条' : '本周核心综述'} · ${escapeHtml(dateLabel)}</span>
+        <a class="btn btn-ghost btn-sm" href="${escapeHtml(reportLink)}" target="_blank" rel="noopener noreferrer">
+          AIHOT 原版${isDaily ? '日报' : '周报'} ↗
+        </a>
+      </div>
+      <h3 class="lead-title">${escapeHtml(leadTitle)}</h3>
+      ${leadParagraph ? `<p class="lead-paragraph">${escapeHtml(leadParagraph)}</p>` : ''}
+    </article>
+  ` : '';
+
+  const reportDate = report.date || report.periodEnd || state.today;
+  const sectionsHtml = (report.sections || [])
+    .map((sec) => {
+      const itemsHtml = (sec.items || [])
+        .map((raw) => {
+          const art = normalizeAihotItemToArticle(raw, reportDate, sec.label);
+          if (!art) return '';
+          const collected = isArticleCollected(art);
+          const origUrl = safeHref(art.url);
+          const aihotUrl = safeHref(art.aihotUrl);
+          return `
+            <article class="news-card ${collected ? 'is-collected' : ''}" data-article-id="${escapeHtml(art.id)}">
+              <div class="news-card-meta">
+                <div class="news-meta-left">
+                  <span class="source-badge">${escapeHtml(art.sourceName)}</span>
+                  <span class="category-badge">${escapeHtml(sec.label)}</span>
+                </div>
+                ${aihotUrl !== '#' ? `<a class="time-label" href="${escapeHtml(aihotUrl)}" target="_blank" rel="noopener noreferrer">AIHOT ↗</a>` : ''}
+              </div>
+              <h4 class="news-title">
+                <a href="${escapeHtml(origUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(art.title)}</a>
+              </h4>
+              <p class="news-summary">${escapeHtml(art.summary)}</p>
+              <div class="news-card-actions">
+                <button
+                  type="button"
+                  class="collect-btn ${collected ? 'is-collected' : ''}"
+                  data-toggle-collect="${escapeHtml(art.id)}"
+                >
+                  ${collected ? '✓ 已收入当日简报' : '+ 收入简报'}
+                </button>
+                <div class="card-link-actions">
+                  <button type="button" class="btn btn-ghost btn-sm" data-copy-url="${escapeHtml(origUrl)}">
+                    复制链接
+                  </button>
+                  <a class="btn btn-ghost btn-sm" href="${escapeHtml(origUrl)}" target="_blank" rel="noopener noreferrer">
+                    阅读原文 ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+
+      return `
+        <section class="daily-section-group">
+          <h3 class="daily-section-heading">
+            <span>${escapeHtml(sec.label)}</span>
+            <span class="daily-section-count">${(sec.items || []).length} 条</span>
+          </h3>
+          <div class="daily-section-list">${itemsHtml}</div>
+        </section>
+      `;
+    })
+    .join('');
+
+  els.dailyViewContainer.innerHTML = `${leadHtml}${sectionsHtml || '<div class="empty-state">本期暂无具体分栏条目。</div>'}`;
+}
+
+function renderAihotItemsView() {
+  if (state.aihot.itemsLoading) {
+    els.aihotViewContainer.innerHTML = '<div class="empty-state">正在加载 AIHOT 智能打分资讯流…</div>';
+    return;
+  }
+
+  if (state.aihot.itemsError) {
+    els.aihotViewContainer.innerHTML = `<div class="empty-state">${escapeHtml(state.aihot.itemsError)}</div>`;
+    return;
+  }
+
+  const items = state.aihot.items || [];
+  if (items.length === 0) {
+    els.aihotViewContainer.innerHTML = '<div class="empty-state">当前筛选条件下暂无 AIHOT 资讯。</div>';
+    return;
+  }
+
+  els.aihotViewContainer.innerHTML = `<div class="news-list">${items.map((art) => {
+    const collected = isArticleCollected(art);
+    const origUrl = safeHref(art.url);
+    const aihotUrl = safeHref(art.aihotUrl);
+    const catName = AIHOT_CATEGORY_LABELS[art.aihotCategory] || CATEGORY_LABELS[art.category] || 'AI';
+    const hasScore = Number.isFinite(art.score);
+    const highScore = hasScore && art.score >= 75;
+    const showOrigTitle = art.originalTitle && art.originalTitle !== art.title;
+
+    return `
+      <article class="news-card ${collected ? 'is-collected' : ''}" data-article-id="${escapeHtml(art.id)}">
+        <div class="news-card-meta">
+          <div class="news-meta-left">
+            <span class="source-badge">${escapeHtml(art.sourceName)}</span>
+            <span class="time-label">${escapeHtml(formatArticleTime(art.publishedAt, true))}</span>
+            ${hasScore ? `<span class="aihot-score-badge ${highScore ? 'is-high' : ''}">AI 评分 ${art.score}</span>` : ''}
+          </div>
+          <span class="category-badge">${escapeHtml(catName)}</span>
+        </div>
+        <h3 class="news-title">
+          <a href="${escapeHtml(origUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(art.title)}</a>
+        </h3>
+        ${showOrigTitle ? `<p class="original-title-line">${escapeHtml(art.originalTitle)}</p>` : ''}
+        <p class="news-summary">${escapeHtml(art.summary)}</p>
+        ${art.reason ? `
+          <div class="aihot-reason-quote">
+            <span class="aihot-reason-label">入选理由：</span>${escapeHtml(art.reason)}
+          </div>
+        ` : ''}
+        <div class="news-card-actions">
+          <button
+            type="button"
+            class="collect-btn ${collected ? 'is-collected' : ''}"
+            data-toggle-collect="${escapeHtml(art.id)}"
+          >
+            ${collected ? '✓ 已收入当日简报' : '+ 收入简报'}
+          </button>
+          <div class="card-link-actions">
+            ${aihotUrl !== '#' ? `<a class="btn btn-ghost btn-sm" href="${escapeHtml(aihotUrl)}" target="_blank" rel="noopener noreferrer">AIHOT ↗</a>` : ''}
+            <button type="button" class="btn btn-ghost btn-sm" data-copy-url="${escapeHtml(origUrl)}">复制链接</button>
+            <a class="btn btn-ghost btn-sm" href="${escapeHtml(origUrl)}" target="_blank" rel="noopener noreferrer">阅读原文 ↗</a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('')}</div>`;
+}
+
+function renderHotEventsView() {
+  if (state.aihot.hotLoading) {
+    els.hotViewContainer.innerHTML = '<div class="empty-state">正在加载 48h 热点事件榜…</div>';
+    return;
+  }
+
+  if (state.aihot.hotError) {
+    els.hotViewContainer.innerHTML = `<div class="empty-state">${escapeHtml(state.aihot.hotError)}</div>`;
+    return;
+  }
+
+  const topics = state.aihot.hotTopics || [];
+  if (topics.length === 0) {
+    els.hotViewContainer.innerHTML = '<div class="empty-state">暂无热点事件数据。</div>';
+    return;
+  }
+
+  els.hotViewContainer.innerHTML = `<div class="hot-events-list">${topics.map((topic) => {
+    const rankNum = String(topic.rank || 0).padStart(2, '0');
+    const isTop3 = (topic.rank || 99) <= 3;
+    const sourcesHtml = (topic.sourceNames || [])
+      .slice(0, 6)
+      .map((s) => `<span class="hot-source-pill">${escapeHtml(s)}</span>`)
+      .join('');
+    const storyPageUrl = safeHref(topic.links?.story || 'https://aihot.news/hot');
+
+    return `
+      <article class="hot-event-card ${isTop3 ? 'is-top3' : ''}">
+        <div class="hot-rank-num">${rankNum}</div>
+        <div class="hot-event-body">
+          <h3 class="hot-event-title">${escapeHtml(topic.title)}</h3>
+          <div class="hot-event-stats">
+            ${topic.sourceCount || 0} 个信源共议 · ${topic.signalCount || 0} 条动态信号 · ${topic.participantCount || 0} 次参与讨论
+          </div>
+          <div class="hot-sources-chips">${sourcesHtml}</div>
+          <div class="hot-event-actions">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              data-open-story="${escapeHtml(topic.storyPublicId)}"
+              data-story-title="${escapeHtml(topic.title)}"
+            >
+              展开 AI 综述 &amp; 时间线
+            </button>
+            <a class="btn btn-ghost btn-sm" href="${escapeHtml(storyPageUrl)}" target="_blank" rel="noopener noreferrer">
+              AIHOT 事件页 ↗
+            </a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('')}</div>`;
+}
+
+function renderHotMiniPanel() {
+  const topics = (state.aihot.hotTopics || []).slice(0, 5);
+  if (state.aihot.hotLoading && topics.length === 0) {
+    els.hotMiniList.innerHTML = '<li class="source-count">正在拉取 48h 热点榜单…</li>';
+    return;
+  }
+  if (topics.length === 0) {
+    els.hotMiniList.innerHTML = `<li class="source-count">${escapeHtml(state.aihot.hotError || '暂无热点数据')}</li>`;
+    return;
+  }
+
+  els.hotMiniList.innerHTML = topics
+    .map((topic) => `
+      <li
+        class="hot-mini-item"
+        data-open-story="${escapeHtml(topic.storyPublicId)}"
+        data-story-title="${escapeHtml(topic.title)}"
+      >
+        <span class="hot-mini-rank">${String(topic.rank || 0).padStart(2, '0')}</span>
+        <div class="hot-mini-text">
+          <div class="hot-mini-title">${escapeHtml(topic.title)}</div>
+          <div class="hot-mini-meta">${topic.sourceCount || 0} 个信源 · ${topic.signalCount || 0} 条信号</div>
+        </div>
+      </li>
+    `)
+    .join('');
+}
+
 function renderSourceSelectAndRadar() {
   const countsInView = new Map();
   const namesMap = new Map();
@@ -678,8 +1328,8 @@ function renderSourceSelectAndRadar() {
   els.sourceFilterSelect.innerHTML = options.join('');
 
   els.lastSyncText.textContent = state.meta?.lastSyncAt
-    ? `最近采集 ${formatArticleTime(state.meta.lastSyncAt, false)} · 点击可过滤`
-    : '点击信源可快速筛选 · 服务端每 30 分钟自动同步';
+    ? `最近采集 ${formatArticleTime(state.meta.lastSyncAt, false)} · 点击可过滤 RSS 库`
+    : '点击信源可快速筛选多源 RSS 归档';
 
   if (statuses.length === 0) {
     const fallbackRows = [...namesMap.entries()].map(([sid, sname]) => `
@@ -758,10 +1408,9 @@ function getFilteredArticles() {
 function renderNewsList() {
   const filtered = getFilteredArticles();
   const isAllMode = state.selectedDate === 'all';
-  els.feedHeading.textContent = isAllMode
-    ? '跨日 AI 情报总库'
-    : `${formatDayChipLabel(state.selectedDate)} · AI 情报流`;
-  els.feedSubheading.textContent = `当前显示 ${filtered.length} / ${state.articles.length} 条 · 按发布时间倒序`;
+  if (state.activeView === 'rss') {
+    renderFeedHeader();
+  }
 
   if (filtered.length === 0) {
     els.newsList.innerHTML = `
@@ -829,7 +1478,7 @@ function renderCuratedPanel() {
   if (items.length === 0) {
     els.curatedList.innerHTML = `
       <div class="curated-empty">
-        点击左侧新闻卡片的「+ 收入简报」，即可收集整理 ${escapeHtml(activeDate)} 的 AI 日报。
+        点击左侧任意新闻的「+ 收入简报」，即可收集整理 ${escapeHtml(activeDate)} 的 AI 日报。
       </div>
     `;
     return;
@@ -867,6 +1516,38 @@ function renderCuratedPanel() {
 }
 
 /* ---------- 简报生成逻辑 ---------- */
+function buildEditionMarkdown(report, type = 'daily') {
+  if (!report) return '';
+  const isDaily = type === 'daily';
+  const title = isDaily
+    ? `# AI 每日精编日报（${report.date}）`
+    : `# AI 每周行业回顾（${report.week}：${report.periodStart} ~ ${report.periodEnd}）`;
+  const leadTitle = isDaily ? report.lead?.title : report.headline;
+  const leadParagraph = isDaily ? report.lead?.leadParagraph : report.overview;
+
+  const lines = [title, ''];
+  if (leadTitle) {
+    lines.push(`## 头版头条：${leadTitle}`, '');
+    if (leadParagraph) lines.push(leadParagraph, '');
+  }
+
+  for (const sec of report.sections || []) {
+    lines.push(`## ${sec.label}`, '');
+    for (const item of sec.items || []) {
+      const link = item.links?.original || item.links?.aihot || '';
+      lines.push(`- **${item.title}**（${item.source?.name || 'AIHOT'}）`);
+      if (item.summary) lines.push(`  - ${item.summary}`);
+      if (link) lines.push(`  - 原文：[${link}](${link})`);
+    }
+    lines.push('');
+  }
+
+  if (report.links?.aihot) {
+    lines.push(`---`, `内容来源：[AIHOT 原版${isDaily ? '日报' : '周报'}](${report.links.aihot})`);
+  }
+  return lines.join('\n').trim();
+}
+
 function buildDailyBriefText(format = 'markdown') {
   const dateKey = getActiveCuratedDate();
   const useFallback = els.exportIncludeAllFallback.checked;
@@ -1048,6 +1729,153 @@ function bindEvents() {
   els.extractUrlBtn.addEventListener('click', handleExtractUrl);
   els.manualForm.addEventListener('submit', handleManualSubmit);
 
+  // 主视角 Tab 切换
+  els.mainViewTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('[data-view]');
+    if (!tab) return;
+    switchMainView(tab.dataset.view);
+  });
+
+  // 精编日报 / 周报切换与操作
+  els.dailyToolbar.addEventListener('click', (e) => {
+    const typeBtn = e.target.closest('[data-edition-type]');
+    if (!typeBtn) return;
+    const type = typeBtn.dataset.editionType;
+    els.dailyToolbar.querySelectorAll('[data-edition-type]').forEach((b) => {
+      b.classList.toggle('is-active', b === typeBtn);
+    });
+    const targetId = type === 'daily' ? state.aihot.selectedDailyId : state.aihot.selectedWeeklyId;
+    loadAihotEdition(type, targetId);
+  });
+
+  els.editionSelect.addEventListener('change', (e) => {
+    loadAihotEdition(state.aihot.editionType, e.target.value);
+  });
+
+  els.copyEditionMarkdownBtn.addEventListener('click', async () => {
+    const md = buildEditionMarkdown(state.aihot.currentReport, state.aihot.editionType);
+    if (!md) return showToast('当前暂无可复制的日报内容');
+    try {
+      await navigator.clipboard.writeText(md);
+      showToast('已复制整期精编 Markdown');
+    } catch {
+      showToast('复制失败，请手动复制');
+    }
+  });
+
+  els.collectEntireEditionBtn.addEventListener('click', () => {
+    const report = state.aihot.currentReport;
+    if (!report?.sections) return showToast('当前暂无可收入的日报条目');
+    const reportDate = report.date || report.periodEnd || state.today;
+    const existing = [...(state.curated.items || [])];
+    let added = 0;
+
+    for (const sec of report.sections) {
+      for (const raw of sec.items || []) {
+        const art = normalizeAihotItemToArticle(raw, reportDate, sec.label);
+        if (!art) continue;
+        registerArticles([art]);
+        const dup = existing.some((c) => c.id === art.id || (c.url && art.url && c.url === art.url));
+        if (!dup) {
+          existing.push({ ...art, note: '', savedAt: new Date().toISOString() });
+          added += 1;
+        }
+      }
+    }
+
+    if (added === 0) {
+      showToast('本期全部条目前已收入简报册');
+      return;
+    }
+
+    const lead = state.aihot.editionType === 'daily' ? report.lead?.title : report.headline;
+    const nextSummary = state.curated.dailySummary || lead || '';
+    state.curated = { ...state.curated, dailySummary: nextSummary, items: existing };
+    syncCollectionButtonsUi();
+    renderCuratedPanel();
+    persistCurated();
+    showToast(`已将本期新增的 ${added} 条全部收入简报册`);
+  });
+
+  // AIHOT 精选流筛选
+  els.aihotCategoryTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('[data-aihot-cat]');
+    if (!tab) return;
+    state.aihot.itemsCategory = tab.dataset.aihotCat;
+    els.aihotCategoryTabs.querySelectorAll('.cat-tab').forEach((node) => {
+      node.classList.toggle('is-active', node === tab);
+    });
+    loadAihotItems();
+  });
+
+  els.aihotToolbar.addEventListener('click', (e) => {
+    const modeBtn = e.target.closest('[data-aihot-mode]');
+    if (modeBtn) {
+      state.aihot.itemsMode = modeBtn.dataset.aihotMode;
+      els.aihotToolbar.querySelectorAll('[data-aihot-mode]').forEach((b) => {
+        b.classList.toggle('is-active', b === modeBtn);
+      });
+      loadAihotItems();
+      return;
+    }
+    const winBtn = e.target.closest('[data-aihot-window]');
+    if (winBtn) {
+      state.aihot.itemsWindow = winBtn.dataset.aihotWindow;
+      els.aihotToolbar.querySelectorAll('[data-aihot-window]').forEach((b) => {
+        b.classList.toggle('is-active', b === winBtn);
+      });
+      loadAihotItems();
+    }
+  });
+
+  els.aihotSearchInput.addEventListener('input', (e) => {
+    state.aihot.itemsSearch = e.target.value;
+    clearTimeout(state.aihotSearchTimer);
+    state.aihotSearchTimer = setTimeout(() => {
+      loadAihotItems();
+    }, 350);
+  });
+
+  // 热点速览跳转与打开事件弹窗
+  els.jumpToHotViewBtn.addEventListener('click', () => switchMainView('hot'));
+
+  document.addEventListener('click', (e) => {
+    const storyBtn = e.target.closest('[data-open-story]');
+    if (storyBtn) {
+      openStoryModal(storyBtn.dataset.openStory, storyBtn.dataset.storyTitle || '热点事件综述');
+    }
+  });
+
+  // 通用主内容区卡片操作代理（收入简报 / 复制链接）
+  const feedActionContainers = [
+    els.dailyViewContainer,
+    els.aihotViewContainer,
+    els.newsList,
+    els.storyModalBody
+  ];
+  feedActionContainers.forEach((container) => {
+    container.addEventListener('click', async (e) => {
+      const toggleBtn = e.target.closest('[data-toggle-collect]');
+      if (toggleBtn) {
+        const id = toggleBtn.dataset.toggleCollect;
+        const article = state.articleRegistry.get(id) || state.articles.find((a) => a.id === id);
+        if (article) toggleCollectArticle(article);
+        return;
+      }
+
+      const copyBtn = e.target.closest('[data-copy-url]');
+      if (copyBtn) {
+        const url = copyBtn.dataset.copyUrl;
+        try {
+          await navigator.clipboard.writeText(url);
+          showToast('原文链接已复制到剪贴板');
+        } catch {
+          showToast('复制失败，请手动右键复制链接');
+        }
+      }
+    });
+  });
+
   // 时间轴日期切换
   els.timelineChips.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-date-chip]');
@@ -1061,10 +1889,11 @@ function bindEvents() {
 
   els.allDaysToggleBtn.addEventListener('click', () => {
     const next = state.selectedDate === 'all' ? state.today : 'all';
+    if (state.activeView !== 'rss') switchMainView('rss');
     loadDay(next);
   });
 
-  // 分类、语言、信源与搜索过滤
+  // 原有 RSS 归档分类、语言、信源与搜索过滤
   els.categoryTabs.addEventListener('click', (e) => {
     const tab = e.target.closest('[data-category]');
     if (!tab) return;
@@ -1104,38 +1933,22 @@ function bindEvents() {
   document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
       e.preventDefault();
-      els.searchInput.focus();
-    }
-  });
-
-  // 左侧新闻流按钮事件代理
-  els.newsList.addEventListener('click', async (e) => {
-    const toggleBtn = e.target.closest('[data-toggle-collect]');
-    if (toggleBtn) {
-      const id = toggleBtn.dataset.toggleCollect;
-      const article = state.articles.find((a) => a.id === id);
-      if (article) toggleCollectArticle(article);
-      return;
-    }
-
-    const copyBtn = e.target.closest('[data-copy-url]');
-    if (copyBtn) {
-      const url = copyBtn.dataset.copyUrl;
-      try {
-        await navigator.clipboard.writeText(url);
-        showToast('原文链接已复制到剪贴板');
-      } catch {
-        showToast('复制失败，请手动右键复制链接');
+      if (state.activeView === 'aihot') {
+        els.aihotSearchInput.focus();
+      } else {
+        if (state.activeView !== 'rss') switchMainView('rss');
+        els.searchInput.focus();
       }
     }
   });
 
-  // 右侧信源雷达点击过滤
+  // 右侧信源雷达点击过滤并切到 RSS 归档视图
   els.sourceRadarList.addEventListener('click', (e) => {
     const row = e.target.closest('[data-source-id]');
     if (!row) return;
     const sid = row.dataset.sourceId;
     state.filters.source = state.filters.source === sid ? 'all' : sid;
+    if (state.activeView !== 'rss') switchMainView('rss');
     renderSourceSelectAndRadar();
     renderNewsList();
   });
@@ -1177,7 +1990,7 @@ function bindEvents() {
   els.clearDayBriefBtn.addEventListener('click', () => {
     if (!(state.curated.items?.length || state.curated.dailySummary)) return;
     state.curated = { dailySummary: '', items: [] };
-    renderNewsList();
+    syncCollectionButtonsUi();
     renderCuratedPanel();
     persistCurated();
     showToast('已清空本日简报草稿');
@@ -1253,7 +2066,7 @@ function bindEvents() {
     });
   });
 
-  [els.manualModal, els.exportModal].forEach((dlg) => {
+  [els.manualModal, els.exportModal, els.storyModal].forEach((dlg) => {
     dlg.addEventListener('click', (e) => {
       if (e.target === dlg) dlg.close();
     });

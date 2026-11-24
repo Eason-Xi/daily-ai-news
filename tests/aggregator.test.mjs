@@ -17,8 +17,9 @@ import {
   stripHtml,
   toDateKey
 } from '../lib/rss-parser.mjs';
+import { createAihotClient, normalizeAihotItemToArticle } from '../public/aihot-client.js';
 import { buildPagesSite } from '../scripts/build-pages.mjs';
-import { createAppServer, isSafePublicHttpUrl } from '../server.mjs';
+import { createAppServer, isAllowedAihotEndpoint, isSafePublicHttpUrl } from '../server.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -232,6 +233,10 @@ test('ArchiveStore 与 HTTP API 端到端闭环测试', async () => {
     assert.equal(exportRes.status, 200);
     const exportJson = await exportRes.json();
     assert.ok(exportJson.articlesByDate['2026-11-24'].length >= 8);
+
+    // 7. AIHOT 代理接口非法路径校验
+    const badProxyRes = await fetch(`${baseUrl}/api/aihot?endpoint=/../secret`);
+    assert.equal(badProxyRes.status, 400);
   } finally {
     await new Promise((resolve) => server.close(resolve));
     await rm(tmpDir, { recursive: true, force: true });
@@ -274,4 +279,76 @@ test('buildPagesSite 静态站点与快照 API 构建测试', async () => {
   } finally {
     await rm(tmpDir, { recursive: true, force: true });
   }
+});
+
+test('AIHOT 客户端缓存、304 复用、输入校验与规范化映射', async () => {
+  let nowMs = 1_000_000;
+  let fetchCalls = 0;
+  const mockFetch = async (url, opts = {}) => {
+    fetchCalls += 1;
+    if (fetchCalls === 1) {
+      return {
+        ok: true,
+        status: 200,
+        headers: { get: (k) => (k.toLowerCase() === 'etag' ? 'W/"v1-test"' : null) },
+        json: async () => ({ schemaVersion: 1, count: 1, items: [{ rank: 1, title: '测试热点' }] })
+      };
+    }
+    assert.equal(opts.headers?.['If-None-Match'], 'W/"v1-test"');
+    return {
+      ok: false,
+      status: 304,
+      headers: { get: () => null }
+    };
+  };
+
+  const client = createAihotClient({
+    fetchFn: mockFetch,
+    ttlMs: 60_000,
+    nowFn: () => nowMs
+  });
+
+  // 1. 首次请求走网络
+  const first = await client.getHotTopics();
+  assert.equal(first.items[0].title, '测试热点');
+  assert.equal(fetchCalls, 1);
+
+  // 2. TTL 内命中本地缓存
+  nowMs += 10_000;
+  const second = await client.getHotTopics();
+  assert.equal(second.items[0].title, '测试热点');
+  assert.equal(fetchCalls, 1);
+
+  // 3. TTL 过期携带 ETag 收到 304 后复用缓存
+  nowMs += 70_000;
+  const third = await client.getHotTopics();
+  assert.equal(third.items[0].title, '测试热点');
+  assert.equal(fetchCalls, 2);
+
+  // 4. 非法参数与代理白名单校验
+  await assert.rejects(() => client.getStory('../etc/passwd'), /非法/);
+  await assert.rejects(() => client.getDaily('invalid-date'), /无效/);
+  assert.equal(isAllowedAihotEndpoint('/dailies/2026-11-24'), true);
+  assert.equal(isAllowedAihotEndpoint('/items?mode=selected&window=24h'), true);
+  assert.equal(isAllowedAihotEndpoint('/../secret'), false);
+  assert.equal(isAllowedAihotEndpoint('/admin/users'), false);
+
+  // 5. 映射规范化
+  const normalized = normalizeAihotItemToArticle({
+    id: 'abc123',
+    title: '中文 AI 新闻标题',
+    originalTitle: 'Original English Title',
+    summary: '简洁摘要',
+    category: 'ai-models',
+    score: 88,
+    reason: '具有重要架构突破。',
+    source: { name: 'X：测试账号' },
+    links: { aihot: 'https://aihot.news/items/abc123', original: 'https://example.com/post/1' }
+  }, '2026-11-24');
+
+  assert.equal(normalized.id, 'aihot_abc123');
+  assert.equal(normalized.url, 'https://example.com/post/1');
+  assert.equal(normalized.aihotUrl, 'https://aihot.news/items/abc123');
+  assert.equal(normalized.category, 'model');
+  assert.equal(normalized.score, 88);
 });

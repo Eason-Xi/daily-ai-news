@@ -19,7 +19,7 @@
           </div>
           <div class="brand-title-row">
             <h1 class="brand-title">每日 AI 情报库</h1>
-            <span class="brand-subtitle">DAILY AI ARCHIVE</span>
+            <span class="brand-subtitle">DAILY AI ARCHIVE · AIHOT INTEGRATED</span>
           </div>
           <p class="brand-meta" id="todayMetaLine">正在加载日期与归档统计…</p>
         </div>
@@ -71,8 +71,94 @@
       </div>
     </section>
 
-    <!-- 过滤与检索工具栏 -->
-    <section class="toolbar-section" aria-label="筛选与检索">
+    <!-- 主视角导航 -->
+    <nav class="view-nav-section" aria-label="主功能视角切换">
+      <div class="view-nav-inner">
+        <div class="view-tabs" id="mainViewTabs" role="tablist">
+          <button type="button" class="view-tab is-active" data-view="daily" role="tab" aria-selected="true">
+            精编 AI 日报
+          </button>
+          <button type="button" class="view-tab" data-view="aihot" role="tab" aria-selected="false">
+            AIHOT 精选流
+          </button>
+          <button type="button" class="view-tab" data-view="hot" role="tab" aria-selected="false">
+            48h 热点事件榜
+          </button>
+          <button type="button" class="view-tab" data-view="rss" role="tab" aria-selected="false">
+            多源 RSS 归档库
+          </button>
+        </div>
+        <div class="view-nav-actions">
+          <button type="button" class="btn btn-secondary btn-sm mobile-brief-trigger" id="mobileOpenBriefBtn">
+            当日简报 (<span id="mobileBriefCount">0</span>)
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 视角 1 工具栏：精编日报 / 周报 -->
+    <section class="toolbar-section" id="dailyToolbar" aria-label="精编日报筛选">
+      <div class="toolbar-inner">
+        <div class="toolbar-top">
+          <div class="segmented-control" role="tablist" aria-label="日报或周报">
+            <button type="button" class="seg-btn is-active" data-edition-type="daily">每日日报</button>
+            <button type="button" class="seg-btn" data-edition-type="weekly">每周周报</button>
+          </div>
+
+          <div class="filter-inputs">
+            <select id="editionSelect" class="select-input" aria-label="选择期数">
+              <option value="latest">最新一期</option>
+            </select>
+            <button type="button" class="btn btn-secondary btn-sm" id="collectEntireEditionBtn">
+              全部收入简报
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" id="copyEditionMarkdownBtn">
+              复制整期 Markdown
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 视角 2 工具栏：AIHOT 精选与全量流 -->
+    <section class="toolbar-section" id="aihotToolbar" aria-label="AIHOT 精选筛选" hidden>
+      <div class="toolbar-inner">
+        <div class="toolbar-top">
+          <div class="category-tabs" id="aihotCategoryTabs" role="tablist" aria-label="AIHOT 分类">
+            <button type="button" class="cat-tab is-active" data-aihot-cat="">全部精选</button>
+            <button type="button" class="cat-tab" data-aihot-cat="ai-models">AI 模型</button>
+            <button type="button" class="cat-tab" data-aihot-cat="ai-products">AI 产品</button>
+            <button type="button" class="cat-tab" data-aihot-cat="industry">行业动态</button>
+            <button type="button" class="cat-tab" data-aihot-cat="paper">论文</button>
+            <button type="button" class="cat-tab" data-aihot-cat="tip">教程</button>
+            <button type="button" class="cat-tab" data-aihot-cat="opinion">观点</button>
+          </div>
+
+          <div class="filter-inputs">
+            <div class="segmented-control" role="tablist" aria-label="精选或全部">
+              <button type="button" class="seg-btn is-active" data-aihot-mode="selected">AI 精选</button>
+              <button type="button" class="seg-btn" data-aihot-mode="all">全部动态</button>
+            </div>
+            <div class="segmented-control" role="tablist" aria-label="时间窗">
+              <button type="button" class="seg-btn is-active" data-aihot-window="24h">24h</button>
+              <button type="button" class="seg-btn" data-aihot-window="7d">7 天</button>
+            </div>
+            <div class="search-wrap">
+              <input
+                type="search"
+                id="aihotSearchInput"
+                class="search-input"
+                placeholder="筛选 AIHOT 资讯…"
+                aria-label="搜索 AIHOT 资讯"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 视角 4 工具栏：原有 RSS 归档筛选 -->
+    <section class="toolbar-section" id="rssToolbar" aria-label="RSS 归档筛选与检索" hidden>
       <div class="toolbar-inner">
         <div class="toolbar-top">
           <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="领域分类">
@@ -115,27 +201,38 @@
 
     <!-- 主内容双栏工作区 -->
     <main class="workspace">
-      <!-- 左侧：每日 AI 新闻流 -->
-      <section class="feed-column" aria-label="新闻资讯流">
+      <!-- 左侧主资讯区域 -->
+      <section class="feed-column" aria-label="主资讯内容区">
         <div class="section-header">
           <div>
-            <h2 class="section-title" id="feedHeading">今日情报流</h2>
-            <p class="section-sub" id="feedSubheading">按发布时间倒序 · 已自动去重</p>
-          </div>
-          <div class="feed-actions-inline">
-            <button type="button" class="btn btn-secondary btn-sm mobile-brief-trigger" id="mobileOpenBriefBtn">
-              当日简报 (<span id="mobileBriefCount">0</span>)
-            </button>
+            <h2 class="section-title" id="feedHeading">精编 AI 日报</h2>
+            <p class="section-sub" id="feedSubheading">正在加载最新 AI 日报…</p>
           </div>
         </div>
 
-        <div class="news-list" id="newsList">
+        <!-- 视图 1：精编日报 / 周报 -->
+        <div id="dailyViewContainer">
+          <div class="empty-state">正在从 AIHOT 拉取最新精编日报…</div>
+        </div>
+
+        <!-- 视图 2：AIHOT 智能评分精选流 -->
+        <div id="aihotViewContainer" hidden>
+          <div class="empty-state">正在加载 AIHOT 精选流…</div>
+        </div>
+
+        <!-- 视图 3：48h 热点事件榜 -->
+        <div id="hotViewContainer" hidden>
+          <div class="empty-state">正在加载 48h AI 热点事件榜…</div>
+        </div>
+
+        <!-- 视图 4：多源 RSS 按日归档流 -->
+        <div class="news-list" id="newsList" hidden>
           <div class="empty-state">正在读取每日归档库…</div>
         </div>
       </section>
 
-      <!-- 右侧：当日精选简报册 + 信源雷达 -->
-      <aside class="sidebar-column" id="briefSidebar" aria-label="当日简报与信源雷达">
+      <!-- 右侧：当日精选简报册 + 48h 热点速览 + 信源雷达 -->
+      <aside class="sidebar-column" id="briefSidebar" aria-label="当日简报与热点雷达">
         <div class="sidebar-mobile-header">
           <strong>当日简报册</strong>
           <button type="button" class="btn btn-ghost btn-sm" id="mobileCloseBriefBtn">关闭</button>
@@ -165,7 +262,7 @@
 
           <div class="curated-list" id="curatedList">
             <div class="curated-empty">
-              点击左侧新闻卡片的「+ 收入简报」，即可整理今天的专属 AI 日报。
+              点击左侧任意资讯的「+ 收入简报」，即可整理今天的专属 AI 日报。
             </div>
           </div>
 
@@ -179,15 +276,34 @@
           </div>
         </section>
 
-        <!-- 信源雷达 -->
+        <!-- 48h 热点 Top 5 速览 -->
+        <section class="panel hot-mini-panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">48h 热点速览</h2>
+              <p class="panel-desc">多源共议事件 · 点击展开综述时间线</p>
+            </div>
+            <button type="button" class="btn btn-ghost btn-sm" id="jumpToHotViewBtn">全部 Top 10</button>
+          </div>
+          <ul class="hot-mini-list" id="hotMiniList">
+            <li class="source-count">正在加载热点榜单…</li>
+          </ul>
+        </section>
+
+        <!-- 多源 RSS 信源雷达 -->
         <section class="panel radar-panel">
           <div class="panel-header">
             <div>
-              <h2 class="panel-title">信源雷达</h2>
+              <h2 class="panel-title">RSS 信源雷达</h2>
               <p class="panel-desc" id="lastSyncText">点击信源名称可快速过滤</p>
             </div>
           </div>
           <ul class="source-list" id="sourceRadarList"></ul>
+          <p class="aihot-attribution-note">
+            精编日报、周报、48h 热点综述与智能精选流由
+            <a href="https://aihot.news/" target="_blank" rel="noopener noreferrer">AIHOT (aihot.news)</a>
+            公开 API 提供（仅供个人非商业阅读）。
+          </p>
         </section>
       </aside>
     </main>
@@ -250,7 +366,7 @@
             type="text"
             id="manualSourceInput"
             class="text-input"
-            placeholder="例如：机器之心 / TechCrunch / 官方博客"
+            placeholder="例如：量子位 / TechCrunch / 官方博客"
           />
         </div>
 
@@ -322,6 +438,28 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-ghost" id="downloadMdBtn">下载 .md 文件</button>
         <button type="button" class="btn btn-primary" id="copyExportBtn">一键复制全文</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 弹窗 3：48h 热点事件综述与时间线 -->
+  <dialog class="modal modal-lg" id="storyModal" aria-labelledby="storyModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="storyModalTitle">事件深度综述</h3>
+          <p class="modal-subtitle" id="storyModalMeta">正在加载事件脉络…</p>
+        </div>
+        <button type="button" class="btn btn-icon btn-sm" data-close-modal="storyModal" aria-label="关闭">✕</button>
+      </div>
+      <div class="modal-body" id="storyModalBody">
+        <div class="empty-state">正在读取事件综述与报道时间线…</div>
+      </div>
+      <div class="modal-footer">
+        <a id="storyAihotLink" class="btn btn-ghost" href="https://aihot.news/hot" target="_blank" rel="noopener noreferrer">
+          在 AIHOT 查看事件页 ↗
+        </a>
+        <button type="button" class="btn btn-primary" data-close-modal="storyModal">关闭</button>
       </div>
     </div>
   </dialog>
