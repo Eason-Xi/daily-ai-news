@@ -1,0 +1,72 @@
+name: Daily AI News Collect & Deploy Pages
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # 北京时间每天 08:00、13:00、20:00 自动采集并归档
+    - cron: '0 0,5,12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-ai-news-pages
+  cancel-in-progress: true
+
+jobs:
+  collect-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Collect daily AI news
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node scripts/collect-daily.mjs
+
+      - name: Commit & push updated archive
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          if ! git diff --quiet data/archive.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/archive.json
+            git commit -m "chore: collect daily AI news ($(TZ='Asia/Shanghai' date +%Y-%m-%d))"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "No new AI news articles to commit."
+          fi
+
+      - name: Run unit and integration tests
+        run: npm test
+
+      - name: Build static GitHub Pages bundle
+        run: node scripts/build-pages.mjs
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,15 @@
+{
+  "name": "daily-ai-news-archive",
+  "version": "1.0.0",
+  "description": "每日 AI 情报库：多源自动采集、按日归档沉淀、个人精选批注与简报导出系统",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "collect": "node scripts/collect-daily.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "test": "node --test tests/aggregator.test.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

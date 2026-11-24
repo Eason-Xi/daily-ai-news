@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>每日 AI 情报库 · Daily AI Archive</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- 顶部报头 Masthead -->
+    <header class="masthead">
+      <div class="masthead-inner">
+        <div class="brand-block">
+          <div class="brand-eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span id="daemonStatusText">每日 AI 情报持续归档守护中</span>
+            <span class="mode-badge" id="runtimeModeBadge" hidden>本地静态模式</span>
+          </div>
+          <div class="brand-title-row">
+            <h1 class="brand-title">每日 AI 情报库</h1>
+            <span class="brand-subtitle">DAILY AI ARCHIVE</span>
+          </div>
+          <p class="brand-meta" id="todayMetaLine">正在加载日期与归档统计…</p>
+        </div>
+
+        <div class="masthead-stats" aria-label="情报库概览">
+          <div class="stat-pill">
+            <span class="stat-label">已归档天数</span>
+            <strong class="stat-value" id="statTotalDays">--</strong>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-label">累计新闻条数</span>
+            <strong class="stat-value" id="statTotalArticles">--</strong>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-label">在线信源</span>
+            <strong class="stat-value" id="statOnlineSources">--</strong>
+          </div>
+        </div>
+
+        <div class="masthead-actions">
+          <button type="button" class="btn btn-secondary" id="openManualModalBtn">
+            <span aria-hidden="true">＋</span> 录入情报
+          </button>
+          <button type="button" class="btn btn-primary" id="syncNowBtn">
+            <span class="sync-icon" aria-hidden="true">↻</span>
+            <span id="syncBtnLabel">立即采集今日</span>
+          </button>
+          <button type="button" class="btn btn-icon" id="themeToggleBtn" title="切换浅色/深色主题" aria-label="切换主题">
+            ◐
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 每日时间轴导航 -->
+    <section class="timeline-section" aria-label="每日归档时间轴">
+      <div class="timeline-inner">
+        <div class="timeline-label">按日归档</div>
+        <div class="timeline-chips" id="timelineChips" role="tablist" aria-label="日期切换"></div>
+        <div class="timeline-controls">
+          <label class="date-picker-wrap" title="跳转指定日期">
+            <span class="sr-only">选择日期</span>
+            <input type="date" id="datePickerInput" class="date-picker" />
+          </label>
+          <button type="button" class="btn btn-ghost btn-sm" id="allDaysToggleBtn">
+            跨日全局库
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 过滤与检索工具栏 -->
+    <section class="toolbar-section" aria-label="筛选与检索">
+      <div class="toolbar-inner">
+        <div class="toolbar-top">
+          <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="领域分类">
+            <button type="button" class="cat-tab is-active" data-category="all">全部领域</button>
+            <button type="button" class="cat-tab" data-category="model">大模型与前沿</button>
+            <button type="button" class="cat-tab" data-category="agent">Agent 与产品</button>
+            <button type="button" class="cat-tab" data-category="opensource">开源与论文</button>
+            <button type="button" class="cat-tab" data-category="industry">产业与资本</button>
+            <button type="button" class="cat-tab" data-category="safety">安全与政策</button>
+          </div>
+
+          <div class="filter-inputs">
+            <select id="langFilterSelect" class="select-input" aria-label="语言筛选">
+              <option value="all">中英文全览</option>
+              <option value="zh">仅中文信源</option>
+              <option value="en">仅英文信源</option>
+            </select>
+            <select id="sourceFilterSelect" class="select-input" aria-label="信源筛选">
+              <option value="all">全部信源</option>
+            </select>
+            <div class="search-wrap">
+              <input
+                type="search"
+                id="searchInput"
+                class="search-input"
+                placeholder="搜索标题、摘要或机构…"
+                aria-label="搜索新闻"
+              />
+              <kbd class="search-kbd" aria-hidden="true">/</kbd>
+            </div>
+          </div>
+        </div>
+
+        <div class="hot-keywords-row" id="hotKeywordsRow">
+          <span class="hot-label">当日高频词：</span>
+          <div class="hot-chips" id="hotChips"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 主内容双栏工作区 -->
+    <main class="workspace">
+      <!-- 左侧：每日 AI 新闻流 -->
+      <section class="feed-column" aria-label="新闻资讯流">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title" id="feedHeading">今日情报流</h2>
+            <p class="section-sub" id="feedSubheading">按发布时间倒序 · 已自动去重</p>
+          </div>
+          <div class="feed-actions-inline">
+            <button type="button" class="btn btn-secondary btn-sm mobile-brief-trigger" id="mobileOpenBriefBtn">
+              当日简报 (<span id="mobileBriefCount">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <div class="news-list" id="newsList">
+          <div class="empty-state">正在读取每日归档库…</div>
+        </div>
+      </section>
+
+      <!-- 右侧：当日精选简报册 + 信源雷达 -->
+      <aside class="sidebar-column" id="briefSidebar" aria-label="当日简报与信源雷达">
+        <div class="sidebar-mobile-header">
+          <strong>当日简报册</strong>
+          <button type="button" class="btn btn-ghost btn-sm" id="mobileCloseBriefBtn">关闭</button>
+        </div>
+
+        <!-- 当日精选简报册 -->
+        <section class="panel brief-panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title" id="briefPanelTitle">当日精选简报</h2>
+              <p class="panel-desc" id="briefPanelMeta">0 条已收入 · 自动同步保存</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="openExportModalBtn">
+              生成简报
+            </button>
+          </div>
+
+          <div class="daily-summary-box">
+            <label for="dailySummaryInput" class="field-label">当日核心观察导语</label>
+            <textarea
+              id="dailySummaryInput"
+              class="textarea-input"
+              rows="2"
+              placeholder="记录今天最值得关注的一句话趋势总结（将自动包含在导出日报顶部）…"
+            ></textarea>
+          </div>
+
+          <div class="curated-list" id="curatedList">
+            <div class="curated-empty">
+              点击左侧新闻卡片的「+ 收入简报」，即可整理今天的专属 AI 日报。
+            </div>
+          </div>
+
+          <div class="panel-footer">
+            <button type="button" class="btn btn-ghost btn-sm" id="downloadArchiveBtn">
+              备份全库 JSON
+            </button>
+            <button type="button" class="btn btn-ghost btn-sm text-danger" id="clearDayBriefBtn">
+              清空本日简报
+            </button>
+          </div>
+        </section>
+
+        <!-- 信源雷达 -->
+        <section class="panel radar-panel">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">信源雷达</h2>
+              <p class="panel-desc" id="lastSyncText">点击信源名称可快速过滤</p>
+            </div>
+          </div>
+          <ul class="source-list" id="sourceRadarList"></ul>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <!-- 弹窗 1：录入外部新闻 / URL 智能提取 -->
+  <dialog class="modal" id="manualModal" aria-labelledby="manualModalTitle">
+    <form method="dialog" class="modal-card" id="manualForm">
+      <div class="modal-header">
+        <h3 class="modal-title" id="manualModalTitle">录入 AI 新闻情报</h3>
+        <button type="button" class="btn btn-icon btn-sm" data-close-modal="manualModal" aria-label="关闭">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-row">
+          <label class="field-label" for="manualUrlInput">原文链接（支持自动抓取标题与摘要）</label>
+          <div class="url-extract-row">
+            <input
+              type="url"
+              id="manualUrlInput"
+              class="text-input"
+              placeholder="https://example.com/ai-news-article"
+            />
+            <button type="button" class="btn btn-secondary" id="extractUrlBtn">智能提取</button>
+          </div>
+          <p class="field-hint" id="extractStatusHint"></p>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label class="field-label" for="manualDateInput">归属日期</label>
+            <input type="date" id="manualDateInput" class="text-input" required />
+          </div>
+          <div class="form-row">
+            <label class="field-label" for="manualCategorySelect">所属分类</label>
+            <select id="manualCategorySelect" class="text-input">
+              <option value="model">大模型与前沿</option>
+              <option value="agent">Agent 与产品</option>
+              <option value="opensource">开源与论文</option>
+              <option value="industry">产业与资本</option>
+              <option value="safety">安全与政策</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="field-label" for="manualTitleInput">新闻标题 <span class="req">*</span></label>
+          <input
+            type="text"
+            id="manualTitleInput"
+            class="text-input"
+            placeholder="例如：OpenAI 发布新一代多模态推理模型…"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <label class="field-label" for="manualSourceInput">来源媒体 / 机构</label>
+          <input
+            type="text"
+            id="manualSourceInput"
+            class="text-input"
+            placeholder="例如：机器之心 / TechCrunch / 官方博客"
+          />
+        </div>
+
+        <div class="form-row">
+          <label class="field-label" for="manualSummaryInput">核心摘要</label>
+          <textarea
+            id="manualSummaryInput"
+            class="textarea-input"
+            rows="3"
+            placeholder="一句话或两句话概括关键事实、指标或行业影响…"
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <label class="field-label" for="manualNoteInput">个人点评批注（可选）</label>
+          <input
+            type="text"
+            id="manualNoteInput"
+            class="text-input"
+            placeholder="记录这条新闻对你的启发或后续跟进动作…"
+          />
+        </div>
+
+        <label class="checkbox-row">
+          <input type="checkbox" id="manualAddCuratedCheck" checked />
+          <span>保存入库的同时自动收入「当日精选简报」</span>
+        </label>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" data-close-modal="manualModal">取消</button>
+        <button type="submit" class="btn btn-primary" id="manualSubmitBtn">保存情报</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- 弹窗 2：每日简报生成与导出 -->
+  <dialog class="modal modal-lg" id="exportModal" aria-labelledby="exportModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="exportModalTitle">生成每日 AI 简报</h3>
+          <p class="modal-subtitle" id="exportModalSubtitle">可直接复制发至飞书、微信群、Notion 或导出本地存档</p>
+        </div>
+        <button type="button" class="btn btn-icon btn-sm" data-close-modal="exportModal" aria-label="关闭">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="export-toolbar">
+          <div class="segmented-control" role="tablist">
+            <button type="button" class="seg-btn is-active" data-export-format="markdown">Markdown 日报</button>
+            <button type="button" class="seg-btn" data-export-format="plain">社群快讯纯文本</button>
+          </div>
+          <label class="checkbox-row">
+            <input type="checkbox" id="exportIncludeAllFallback" />
+            <span>若本日暂无精选，自动用当天高热资讯填充</span>
+          </label>
+        </div>
+
+        <textarea
+          id="exportPreviewArea"
+          class="export-preview"
+          rows="16"
+          readonly
+          aria-label="简报导出预览"
+        ></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" id="downloadMdBtn">下载 .md 文件</button>
+        <button type="button" class="btn btn-primary" id="copyExportBtn">一键复制全文</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 轻提示容器 -->
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
