@@ -1,7 +1,7 @@
 {
   "version": 1,
   "meta": {
-    "lastSyncAt": "2026-11-24T05:59:41.254Z",
+    "lastSyncAt": "2026-11-24T06:04:39.286Z",
     "autoSyncIntervalMinutes": 30,
     "sourceStatuses": [
       {
@@ -11,7 +11,7 @@
         "homeUrl": "https://news.ycombinator.com/",
         "status": "ok",
         "count": 0,
-        "checkedAt": "2026-11-24T05:59:39.673Z"
+        "checkedAt": "2026-11-24T06:04:37.445Z"
       },
       {
         "id": "hf-papers",
@@ -20,7 +20,7 @@
         "homeUrl": "https://huggingface.co/papers",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-24T05:59:39.734Z"
+        "checkedAt": "2026-11-24T06:04:37.475Z"
       },
       {
         "id": "arxiv-ai",
@@ -29,7 +29,7 @@
         "homeUrl": "https://arxiv.org/list/cs.AI/recent",
         "status": "ok",
         "count": 0,
-        "checkedAt": "2026-11-24T05:59:39.734Z"
+        "checkedAt": "2026-11-24T06:04:37.477Z"
       },
       {
         "id": "openai-news",
@@ -38,7 +38,7 @@
         "homeUrl": "https://openai.com/news",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-24T05:59:39.735Z"
+        "checkedAt": "2026-11-24T06:04:37.478Z"
       },
       {
         "id": "techcrunch-ai",
@@ -47,7 +47,7 @@
         "homeUrl": "https://techcrunch.com/category/artificial-intelligence/",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-24T05:59:39.735Z"
+        "checkedAt": "2026-11-24T06:04:37.478Z"
       },
       {
         "id": "verge-ai",
@@ -56,7 +56,7 @@
         "homeUrl": "https://www.theverge.com/ai-artificial-intelligence",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T05:59:39.736Z"
+        "checkedAt": "2026-11-24T06:04:37.479Z"
       },
       {
         "id": "wired-ai",
@@ -65,7 +65,7 @@
         "homeUrl": "https://www.wired.com/tag/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T05:59:39.736Z"
+        "checkedAt": "2026-11-24T06:04:37.480Z"
       },
       {
         "id": "mit-ai",
@@ -74,7 +74,7 @@
         "homeUrl": "https://www.technologyreview.com/topic/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T05:59:39.737Z"
+        "checkedAt": "2026-11-24T06:04:37.481Z"
       },
       {
         "id": "qbitai",
@@ -83,7 +83,7 @@
         "homeUrl": "https://www.qbitai.com/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T05:59:39.737Z"
+        "checkedAt": "2026-11-24T06:04:37.481Z"
       },
       {
         "id": "ifanr-ai",
@@ -92,7 +92,7 @@
         "homeUrl": "https://www.ifanr.com/",
         "status": "ok",
         "count": 16,
-        "checkedAt": "2026-11-24T05:59:39.738Z"
+        "checkedAt": "2026-11-24T06:04:37.483Z"
       }
     ]
   },
