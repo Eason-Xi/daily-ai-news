@@ -1,7 +1,7 @@
 {
   "version": 1,
   "meta": {
-    "lastSyncAt": "2026-11-25T05:54:52.431Z",
+    "lastSyncAt": "2026-11-25T20:47:34.408Z",
     "autoSyncIntervalMinutes": 30,
     "sourceStatuses": [
       {
@@ -11,7 +11,7 @@
         "homeUrl": "https://news.ycombinator.com/",
         "status": "ok",
         "count": 0,
-        "checkedAt": "2026-11-25T05:54:50.458Z"
+        "checkedAt": "2026-11-25T20:47:32.450Z"
       },
       {
         "id": "hf-papers",
@@ -19,8 +19,8 @@
         "lang": "en",
         "homeUrl": "https://huggingface.co/papers",
         "status": "ok",
-        "count": 20,
-        "checkedAt": "2026-11-25T05:54:50.491Z"
+        "count": 19,
+        "checkedAt": "2026-11-25T20:47:32.608Z"
       },
       {
         "id": "arxiv-ai",
@@ -29,7 +29,7 @@
         "homeUrl": "https://arxiv.org/list/cs.AI/recent",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-25T05:54:50.492Z"
+        "checkedAt": "2026-11-25T20:47:32.609Z"
       },
       {
         "id": "openai-news",
@@ -38,7 +38,7 @@
         "homeUrl": "https://openai.com/news",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-25T05:54:50.492Z"
+        "checkedAt": "2026-11-25T20:47:32.611Z"
       },
       {
         "id": "techcrunch-ai",
@@ -47,7 +47,7 @@
         "homeUrl": "https://techcrunch.com/category/artificial-intelligence/",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-25T05:54:50.493Z"
+        "checkedAt": "2026-11-25T20:47:32.612Z"
       },
       {
         "id": "verge-ai",
@@ -56,7 +56,7 @@
         "homeUrl": "https://www.theverge.com/ai-artificial-intelligence",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-25T05:54:50.494Z"
+        "checkedAt": "2026-11-25T20:47:32.613Z"
       },
       {
         "id": "wired-ai",
@@ -65,7 +65,7 @@
         "homeUrl": "https://www.wired.com/tag/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-25T05:54:50.495Z"
+        "checkedAt": "2026-11-25T20:47:32.614Z"
       },
       {
         "id": "mit-ai",
@@ -74,7 +74,7 @@
         "homeUrl": "https://www.technologyreview.com/topic/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-25T05:54:50.495Z"
+        "checkedAt": "2026-11-25T20:47:32.615Z"
       },
       {
         "id": "qbitai",
@@ -83,7 +83,7 @@
         "homeUrl": "https://www.qbitai.com/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-25T05:54:50.496Z"
+        "checkedAt": "2026-11-25T20:47:32.616Z"
       },
       {
         "id": "ifanr-ai",
@@ -91,8 +91,8 @@
         "lang": "zh",
         "homeUrl": "https://www.ifanr.com/",
         "status": "ok",
-        "count": 15,
-        "checkedAt": "2026-11-25T05:54:50.497Z"
+        "count": 14,
+        "checkedAt": "2026-11-25T20:47:32.618Z"
       }
     ]
   },
@@ -1155,6 +1155,138 @@
         "lang": "en"
       },
       {
+        "id": "ai_cfe70062a8b8",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Fractal Neural Synthesis: Constant-Storage Procedural Weight Derivation via Complex Quadratic Boundary Dynamics",
+        "summary": "Conventional neural networks store synaptic parameters as explicit tensors whose persistent Flash footprint scales linearly (O(W)) with parameter count, constraining resource-limited edge microcontrollers. We formulate…",
+        "url": "https://huggingface.co/papers/2611.32393",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_c199f768c423",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "SpatialArena: Where Do Geometric Foundation Models Stand?",
+        "summary": "3D perception is shifting from task-specific pipelines to geometric foundation models: monocular depth networks, feed-forward 3D/4D reconstruction models, and vision--language models that predict geometry. However,…",
+        "url": "https://huggingface.co/papers/2611.32816",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_e510b5e93646",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth",
+        "summary": "Looped transformers reuse one block of shared weights along the depth of the network. Recent looped diffusion transformers are trained from scratch, which repeats the full pretraining cost although strong pretrained…",
+        "url": "https://huggingface.co/papers/2611.31977",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1729f775f618",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Separating Measurement Failures from Defence Failures in Split Language-Model Privacy",
+        "summary": "Split-training privacy evaluations fail through distinct mechanisms. Evaluators can overlook an exposed gradient channel, align reconstructions against shifted labels, or deploy uncalibrated probes before testing a…",
+        "url": "https://huggingface.co/papers/2611.31752",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_c88399138b97",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Measuring Layer-wise Intrinsic Dimensionality of FFNs in LLMs via PCA",
+        "summary": "Modern large language models (LLMs) keep the feed-forward network (FFN) intermediate width identical across every layer, a convention inherited from the original Transformer. Yet mechanistic work suggests layers at…",
+        "url": "https://huggingface.co/papers/2611.32782",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_853993777f31",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "ICLWorld: Benchmarking In-Context Learning of Agents from Digital to Physical Worlds",
+        "summary": "In-context learning (ICL) lets agents acquire new rules from context and adapt to user-specific requirements at inference time. The same frontier agents now operate both computers and robots, yet their ICL remains…",
+        "url": "https://huggingface.co/papers/2611.32649",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_dfeadb7150d8",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "InstructReplay: Replaying Assistant Turns to Preserve General Behavior During Factual Fine-Tuning",
+        "summary": "Fine-tuning an instruction-tuned language model on new facts often erodes its general abilities. We find that standard fine-tuning lowers instruction-following, reasoning and coding benchmarks by 35 points on average,…",
+        "url": "https://huggingface.co/papers/2611.32918",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_ee2f14a27f5d",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "CoT-Proxy: Cross-Format Transfer for Distilling Long-Horizon Policies",
+        "summary": "Reasoning models become long-horizon agents through reinforcement learning or, more cheaply, through fine-tuning on a stronger teacher's trajectories, which contain the teacher's chain-of-thought as well as its actions.…",
+        "url": "https://huggingface.co/papers/2611.33148",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1f5280f214a6",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "GRAPE-Bench: When Vision Degrades, Does Video Reasoning Hold?",
+        "summary": "Despite strong performance on standard benchmarks, video reasoning models remain vulnerable to visual degradation, raising concerns about their reliability in safety-critical scenarios. Existing benchmarks address this…",
+        "url": "https://huggingface.co/papers/2611.33020",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_964abff5bf4e",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "SpecEngineeringBench: Evaluating Coding Agents as Autonomous Specification Engineers",
+        "summary": "Autonomous specification engineering requires coding agents to translate functional requirements into executable tests and use the results to discover and validate defects. However, existing benchmarks evaluate coding…",
+        "url": "https://huggingface.co/papers/2611.32973",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_a8237e3c1605",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "ReFocus: Progress-Guided Adaptive Practice for Long-Horizon Robotic Manipulation Reinforcement Learning",
+        "summary": "Online reinforcement learning (RL) enables vision-language-action policies to improve through environmental interaction. However, in long-horizon manipulation, sparse success/failure feedback provides little information…",
+        "url": "https://huggingface.co/papers/2611.32639",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
         "id": "ai_786a4f32021c",
         "date": "2026-11-24",
         "publishedAt": "2026-11-23T18:26:47.000Z",
@@ -1793,6 +1925,66 @@
         "lang": "en"
       },
       {
+        "id": "ai_27b0129b73da",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "OWE-Bench: A long-horizon benchmark for measuring real-world engineering",
+        "summary": "We present OWE-Bench (OpenWorldEngineer-Bench), a benchmark of 26 long-horizon engineering tasks written by domain experts in software engineering, physical engineering, machine learning, and scientific computing. Tasks…",
+        "url": "https://huggingface.co/papers/2611.30017",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_5f2128d111ed",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation",
+        "summary": "Visual creation demands expressive imagery together with precise control over text, layout, and structure. We introduce Nemotron-Labs-VisualCreation, an agentic framework that connects these capabilities through Pixel…",
+        "url": "https://huggingface.co/papers/2611.31358",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_4bb70b9962f0",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "FATCAT: Fault Injection Attacks Targeting Chip-level Alignment",
+        "summary": "Model alignment is the primary safety and security mechanism for enforcing refusal of malicious prompts in modern foundation models; yet, existing adversarial evaluations implicitly assume underlying hardware integrity.…",
+        "url": "https://huggingface.co/papers/2611.31129",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "safety",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1d7900038f9b",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Foresight Forcing: Learning Spatial Foresight for Robotic Manipulation",
+        "summary": "Robotic manipulation policies can improve action prediction by anticipating how objects move and how their spatial relationships change. World Action Models (WAMs) learn to predict future visual observations, but their…",
+        "url": "https://huggingface.co/papers/2611.30963",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_5329331fa88a",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Small Learned Projections for Semantic-Reversal-Aware Retrieval with Spectral Acceleration: A Four-Domain Empirical Study",
+        "summary": "Dense-embedding retrievers can fail adversarially: when a query is answered by a document A and reversed by a near-copy B that differs from A by a small meaning-changing edit (a \"trap\"), raw cosine over E5-Large-v2…",
+        "url": "https://huggingface.co/papers/2611.31442",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
         "id": "ai_bed82431ae1f",
         "date": "2026-11-23",
         "publishedAt": "2026-11-22T18:08:43.000Z",
@@ -2131,6 +2323,30 @@
         "sourceName": "Hugging Face Papers",
         "category": "agent",
         "lang": "en"
+      },
+      {
+        "id": "ai_5ce274847253",
+        "date": "2026-11-20",
+        "publishedAt": "2026-11-19T19:00:00.000Z",
+        "title": "Degradation of Language Models under Controlled Load: Synchronization, Rule Execution and Misfires on the Background",
+        "summary": "As the load grows, a language model makes more and more errors, but different processes stand behind this decline in quality. The model may lose the correspondence with the source text, it may keep its place in the text…",
+        "url": "https://huggingface.co/papers/2611.27404",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_bac0ca0a625e",
+        "date": "2026-11-20",
+        "publishedAt": "2026-11-19T19:00:00.000Z",
+        "title": "Mega-MMDF and DeepfakeBench-MM: Benchmarking Multimodal Deepfake Detection Across Diverse Forgery Pipelines",
+        "summary": "Audio-visual deepfakes can spread misinformation and enable impersonation, undermining trust in digital media. However, existing datasets provide limited coverage of forgery operations and their combinations,…",
+        "url": "https://huggingface.co/papers/2510.22622",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
       }
     ],
     "2026-11-21": [
@@ -2443,6 +2659,18 @@
         "title": "Interpretable Prototype-Conditioned Adaptation for Weather Forecasting",
         "summary": "Data-driven weather forecasting requires distinguishing local states and their temporal evolution. However, learned patterns remain implicit in neural forecasters, making their influence difficult to interpret. Failing…",
         "url": "https://huggingface.co/papers/2611.25848",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_5bbdebecd626",
+        "date": "2026-11-19",
+        "publishedAt": "2026-11-18T19:00:00.000Z",
+        "title": "Point Dynamics as Proxy for Robotic World Models",
+        "summary": "Robotic world models predict future video frames from the current observation and a sequence of robot actions. While recent models follow the given actions closely, manipulated objects often collapse or move…",
+        "url": "https://huggingface.co/papers/2611.25946",
         "sourceId": "hf-papers",
         "sourceName": "Hugging Face Papers",
         "category": "opensource",
@@ -3785,6 +4013,198 @@
     ],
     "2026-11-25": [
       {
+        "id": "ai_f6730ac844fe",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T15:41:43.000Z",
+        "title": "AI data centers are becoming harder to build, and neoclouds are feeling it",
+        "summary": "⁠Nvidia has made clear⁠ it won’t backstop an AI data center until it’s nearly ready to run, and that’s landing just as neoclouds report construction delays and more expensive debt. The message to developers is that…",
+        "url": "https://techcrunch.com/podcast/ai-data-centers-are-becoming-harder-to-build-and-neoclouds-are-feeling-it",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_3cb2871a2da4",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T14:51:06.000Z",
+        "title": "丢个故事就行！直出15分钟AI短片，家里二舅也能上手",
+        "summary": "点击查看原文完整报道与技术细节。",
+        "url": "https://www.qbitai.com/2026/11/512727.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_45e2e7f383aa",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T14:32:57.000Z",
+        "title": "零基础也能做开发，智元灵心平台一年孵化超3万个机器人智能体",
+        "summary": "智元推出行业首个开放且完整的具身智能生态技术体系AIMA",
+        "url": "https://www.qbitai.com/2026/11/512715.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "opensource",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_2203f5966aa2",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T14:21:20.000Z",
+        "title": "算力唤醒真实世界：九章云极发布物理AI工厂与生态开放计划",
+        "summary": "11月25日，以“算力唤醒真实世界”为主题的2026物理AI行业峰会暨九章云极智算生态大会在深圳举行。",
+        "url": "https://www.qbitai.com/2026/11/512582.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "industry",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_b59a8f2fd288",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T14:20:24.000Z",
+        "title": "逐际动⼒与商汤⼤装置达成合作，以高质量算力全⾯⽀撑机器⼈仿真训练与测试",
+        "summary": "贯通具⾝智能研发流程",
+        "url": "https://www.qbitai.com/2026/11/512683.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "industry",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_e1845ee0b548",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T14:12:33.000Z",
+        "title": "Amazon is reportedly in talks to end Muse AI shopping block",
+        "summary": "Amazon has held talks about letting Meta's Muse AI agent shop on its online marketplace, according to a report from Fortune. The discussions, which could end Amazon's block on Muse, reportedly center on the kinds of…",
+        "url": "https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions",
+        "sourceId": "verge-ai",
+        "sourceName": "The Verge AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_28175a595e60",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T14:10:18.000Z",
+        "title": "Amazon and Meta reportedly in talks to lift blockade on AI agent Muse",
+        "summary": "Amazon and Meta are discussing a potential deal that would end a two-month-long blockade of Muse.",
+        "url": "https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_9edbb62c9bcf",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T13:00:00.000Z",
+        "title": "The questions Jensen Huang and Nvidia will still have to answer about Megaspeed",
+        "summary": "The central question for investigators is what Nvidia knew about where those chips ended up and whether Huang's affair with a Megaspeed executive gave the company reason to doubt Megaspeed's assurances.",
+        "url": "https://techcrunch.com/2026/11/25/the-questions-jensen-huang-and-nvidia-will-still-have-to-answer-about-megaspeed",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_929f2b2360df",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T13:00:00.000Z",
+        "title": "Has vibe coding made open source the new normal for synths?",
+        "summary": "The emergence of powerful vibe-coding agents and tools like Reverse Engineer Anything has caused chaos in the music gear world, leaving companies scrambling to figure out how to respond. While some, like Roland, have…",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/1040081/vibe-coding-open-source-music-firmware",
+        "sourceId": "verge-ai",
+        "sourceName": "The Verge AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_c781e5669986",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T11:30:00.000Z",
+        "title": "Airplane Turbulence Is Extremely Hard to Predict, but Maybe Not for Long",
+        "summary": "The “hardest remaining problem in classical physics” gets a boost from terabytes of crowdsourced data and new ways of using machine learning and AI.",
+        "url": "https://www.wired.com/story/airplane-turbulence-is-extremely-hard-to-predict-and-avoid",
+        "sourceId": "wired-ai",
+        "sourceName": "WIRED AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_b4817ec40d9d",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T11:07:14.000Z",
+        "title": "9400万参数硬刚50亿，权重显存直降98%！Loop架构被这家中国团队玩明白了",
+        "summary": "揭秘General Looped Model",
+        "url": "https://www.qbitai.com/2026/11/512565.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "opensource",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_570b39bfa866",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T10:00:00.000Z",
+        "title": "AI is straining America’s open records systems",
+        "summary": "In Panton, Vermont, population 660, town clerk Kyle Rowe did it all. He crafted budgets, paid vendors, handled property tax disputes, and served as the town’s zoning supervisor and presiding elections officer. During…",
+        "url": "https://www.technologyreview.com/2026/11/25/1149702/ai-is-straining-americas-open-records-systems",
+        "sourceId": "mit-ai",
+        "sourceName": "MIT Tech Review AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_bc7248d5d33a",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T08:23:24.000Z",
+        "title": "Anthropic还藏着2个最强模型…",
+        "summary": "Fable5.2已经很旧了。",
+        "url": "https://www.qbitai.com/2026/11/512538.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_dc2be766855c",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T08:18:54.000Z",
+        "title": "完整议程！第二十一届中国IDC产业年度大典（IDCC2026）",
+        "summary": "第二十一届中国IDC产业年度大典（IDCC2026）暨2026全球数字基础设施科技展即将举办",
+        "url": "https://www.qbitai.com/2026/11/512532.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_c220f10f59dc",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T07:46:52.000Z",
+        "title": "A社Tibo被曝加盟OpenAI！上市前离职三人组异地团圆",
+        "summary": "OpenAI这下要有俩Tibo了",
+        "url": "https://www.qbitai.com/2026/11/512515.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "industry",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_44100d5ba39a",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T06:49:27.000Z",
+        "title": "华人计算机视觉泰斗二次创业！离开苹果下场，专注下一代空间与物理AI",
+        "summary": "复杂场景三维建模成本降至10美元以内",
+        "url": "https://www.qbitai.com/2026/11/512498.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
         "id": "ai_0aa2154153e1",
         "date": "2026-11-25",
         "publishedAt": "2026-11-25T05:21:04.000Z",
@@ -4525,6 +4945,104 @@
         "url": "https://www.wired.com/story/ai-agents-can-get-honeypotted-too-aw",
         "sourceId": "wired-ai",
         "sourceName": "WIRED AI",
+        "category": "agent",
+        "lang": "en"
+      }
+    ],
+    "2026-11-26": [
+      {
+        "id": "ai_4c44ce30146b",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T20:03:27.000Z",
+        "title": "OpenAI says heavy ChatGPT users may hit limits sooner as it merges Chat and Work",
+        "summary": "OpenAI will introduce a single usage meter across ChatGPT as it combines the Chat and Work experiences.",
+        "url": "https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_e7d7a2ca3b37",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T19:54:57.000Z",
+        "title": "Jensen Huang broke Nvidia’s code of conduct, and his employees may not forget it",
+        "summary": "Most codes of conduct serve as a reflection of corporate culture. In Nvidia's case, that could have consequences.",
+        "url": "https://techcrunch.com/2026/11/25/jensen-huang-broke-nvidias-code-of-conduct-and-his-employees-may-not-forget-it",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_372ac8913322",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T19:44:24.000Z",
+        "title": "Anthropic’s Dario Amodei calls accusations of surrendering human control to AI ‘absurd’",
+        "summary": "Anthropic CEO Dario Amodei pushes back against rivals’ accusations that he favors surrendering human agency to AI, even as leading AI companies increasingly automate their own research and model development.",
+        "url": "https://techcrunch.com/2026/11/25/anthropics-dario-amodei-calls-accusations-of-surrendering-human-control-to-ai-absurd",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_c2211ba4f6cd",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T18:11:46.000Z",
+        "title": "Want to buy your kid an AI toy this Christmas? Not in New York",
+        "summary": "New York has banned AI chatbot toys for five years as new research from Common Sense Media reveals troubling safety failures, including exposure to inappropriate content and risks to emotional development.",
+        "url": "https://techcrunch.com/2026/11/25/want-to-buy-your-kid-an-ai-toy-this-christmas-not-in-new-york",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "safety",
+        "lang": "en"
+      },
+      {
+        "id": "ai_6359c2ce0900",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T17:44:51.000Z",
+        "title": "FCC signs off on SpaceX’s plan to put up to 1 million data center satellites into space",
+        "summary": "In an announcement on Wednesday, the FCC says it authorized SpaceX to deploy up to 1 million AI chip-equipped satellites as part of the Elon Musk-owned company's \"Starmind\" initiative. With several others also pursuing…",
+        "url": "https://www.theverge.com/science/1042278/spacex-fcc-starmind-ai-space-data-centers",
+        "sourceId": "verge-ai",
+        "sourceName": "The Verge AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_92419877312e",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T17:35:58.000Z",
+        "title": "Character.AI’s plan to auction off users’ private chats challenged by state AGs",
+        "summary": "The proposed Character.ai bankruptcy sale includes sensitive personal data from more than 21 million U.S. accounts, including 2.1 million registered to minors, the state AGs said.",
+        "url": "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_3043f56e6b39",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T16:34:09.000Z",
+        "title": "我以为这是摄影作品，你告诉我这是最新的国产AI？！",
+        "summary": "商汤SenseNova U1.6",
+        "url": "https://www.qbitai.com/2026/11/512748.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_6b1c4ab3d056",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-25T16:00:59.000Z",
+        "title": "Nothing offers a full look at its AI earbuds and charging case",
+        "summary": "Nothing is showing off a much more detailed look at its upcoming AI earbuds ahead of their December 8th release. The Ear Note buds can record your calls, while their charging case can record, transcribe, and summarize…",
+        "url": "https://www.theverge.com/gadgets/1042162/nothing-ear-note-ai-earbuds-reveal",
+        "sourceId": "verge-ai",
+        "sourceName": "The Verge AI",
         "category": "agent",
         "lang": "en"
       }
