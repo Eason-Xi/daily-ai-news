@@ -1,7 +1,7 @@
 {
   "version": 1,
   "meta": {
-    "lastSyncAt": "2026-11-24T21:39:20.536Z",
+    "lastSyncAt": "2026-11-25T05:54:52.431Z",
     "autoSyncIntervalMinutes": 30,
     "sourceStatuses": [
       {
@@ -11,7 +11,7 @@
         "homeUrl": "https://news.ycombinator.com/",
         "status": "ok",
         "count": 0,
-        "checkedAt": "2026-11-24T21:39:18.626Z"
+        "checkedAt": "2026-11-25T05:54:50.458Z"
       },
       {
         "id": "hf-papers",
@@ -20,7 +20,7 @@
         "homeUrl": "https://huggingface.co/papers",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-24T21:39:18.793Z"
+        "checkedAt": "2026-11-25T05:54:50.491Z"
       },
       {
         "id": "arxiv-ai",
@@ -29,7 +29,7 @@
         "homeUrl": "https://arxiv.org/list/cs.AI/recent",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-24T21:39:18.795Z"
+        "checkedAt": "2026-11-25T05:54:50.492Z"
       },
       {
         "id": "openai-news",
@@ -38,7 +38,7 @@
         "homeUrl": "https://openai.com/news",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-24T21:39:18.796Z"
+        "checkedAt": "2026-11-25T05:54:50.492Z"
       },
       {
         "id": "techcrunch-ai",
@@ -47,7 +47,7 @@
         "homeUrl": "https://techcrunch.com/category/artificial-intelligence/",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-24T21:39:18.797Z"
+        "checkedAt": "2026-11-25T05:54:50.493Z"
       },
       {
         "id": "verge-ai",
@@ -56,7 +56,7 @@
         "homeUrl": "https://www.theverge.com/ai-artificial-intelligence",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T21:39:18.799Z"
+        "checkedAt": "2026-11-25T05:54:50.494Z"
       },
       {
         "id": "wired-ai",
@@ -65,7 +65,7 @@
         "homeUrl": "https://www.wired.com/tag/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T21:39:18.800Z"
+        "checkedAt": "2026-11-25T05:54:50.495Z"
       },
       {
         "id": "mit-ai",
@@ -74,7 +74,7 @@
         "homeUrl": "https://www.technologyreview.com/topic/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T21:39:18.801Z"
+        "checkedAt": "2026-11-25T05:54:50.495Z"
       },
       {
         "id": "qbitai",
@@ -83,7 +83,7 @@
         "homeUrl": "https://www.qbitai.com/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-24T21:39:18.802Z"
+        "checkedAt": "2026-11-25T05:54:50.496Z"
       },
       {
         "id": "ifanr-ai",
@@ -91,8 +91,8 @@
         "lang": "zh",
         "homeUrl": "https://www.ifanr.com/",
         "status": "ok",
-        "count": 14,
-        "checkedAt": "2026-11-24T21:39:18.804Z"
+        "count": 15,
+        "checkedAt": "2026-11-25T05:54:50.497Z"
       }
     ]
   },
@@ -867,6 +867,18 @@
         "lang": "en"
       },
       {
+        "id": "ai_99b93f3e1098",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-24T00:00:00.000Z",
+        "title": "Clay helps sales teams win with Codex and ChatGPT",
+        "summary": "ChatGPT and Codex integrations help Clay’s users research deals and turn data into go-to-market plays, with GPT-6 models handling the reasoning.",
+        "url": "https://openai.com/business/customer-stories/clay-plugins-openai",
+        "sourceId": "openai-news",
+        "sourceName": "OpenAI News",
+        "category": "model",
+        "lang": "en"
+      },
+      {
         "id": "ai_049542555c2c",
         "date": "2026-11-24",
         "publishedAt": "2026-11-23T22:25:12.000Z",
@@ -1032,6 +1044,114 @@
         "sourceId": "verge-ai",
         "sourceName": "The Verge AI",
         "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_6ab67ac03b40",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Qwen-Image-HD: Autoregressive Diffusion for High Definition Image Generation",
+        "summary": "Fine-tuning a generator on a complete high-resolution canvas requires long image sequences and substantial computation, yet local regions can still exhibit unnatural repetitive stripes when training resources are…",
+        "url": "https://huggingface.co/papers/2611.32736",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_4d8a65ee821b",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Residual Guidance for Real-Time Interactive Video Generation",
+        "summary": "Real-time interactive video generation allows users to change the prompt during generation to steer the evolving video. However, existing streaming models, which generate videos chunk by chunk, often keep following the…",
+        "url": "https://huggingface.co/papers/2611.32820",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_793b21a64fbb",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "RoMo Hands: A Large Scale Richly Organized Text to Hand Motion Dataset",
+        "summary": "While text-driven body motion generation has matured, pure-hand synthesis remains bottlenecked by data. Existing datasets often treat hands as rigid end-effectors, lack fine-grained captions, or are too limited in scale…",
+        "url": "https://huggingface.co/papers/2611.31766",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_43fa0a750af8",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "MAGPIE: Agentic Multi-Reference Image Generation via Executable Scene Construction",
+        "summary": "Multi-reference image generation requires a model to preserve the appearance of selected subjects while arranging them according to an instruction. Despite recent progress in reference-based generation and compositional…",
+        "url": "https://huggingface.co/papers/2611.32462",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_4c1426fd24e9",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Coding4Games: Can Modern Coding Agents Play Modern Video Games?",
+        "summary": "Games, especially modern AAA games, challenge language models to perceive complex scenes, control actions, and make decisions over long horizons. Existing game benchmarks primarily test language models as computer-use…",
+        "url": "https://huggingface.co/papers/2611.31974",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_f76b405a7950",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "LoopDVR: Looped Transformer for Efficient Dense Visual Recognition",
+        "summary": "We propose LoopDVR, a framework for converting pretrained Transformer-based dense visual recognition models into parameter-efficient looped networks. Rather than reducing the network width or depth directly, LoopDVR…",
+        "url": "https://huggingface.co/papers/2611.32067",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_91c690722323",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "PartAgent: Agentic 3D Part Segmentation via Expert Integration and Closed-Loop Refinement",
+        "summary": "Segmenting a 3D object into semantically meaningful parts requires joint reasoning about geometric structure and semantic context. Pretrained 3D experts provide spatially grounded region proposals, while 2D experts…",
+        "url": "https://huggingface.co/papers/2611.32554",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_077753344d38",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Clinical3D-Bench: Evaluating and Improving Spatial Intelligence of Multimodal LLMs in Hospital Environments",
+        "summary": "Spatial reasoning in hospitals requires tracking look-alike equipment, interpreting patient-relative directions, and judging passage widths, yet existing benchmarks provide limited coverage of these abilities. We…",
+        "url": "https://huggingface.co/papers/2611.32094",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_2424137b9307",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "EEGJev: A System One Decision Model and Benchmark for Multi-Task EEG Question Answering",
+        "summary": "A single electroencephalographic (EEG) recording can support multiple decoding tasks. Fixed-label tests cannot show how EEG foundation models handle changing questions or options. We introduce EEGJev, a fast decision…",
+        "url": "https://huggingface.co/papers/2611.32100",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
         "lang": "en"
       },
       {
@@ -1613,6 +1733,66 @@
         "lang": "en"
       },
       {
+        "id": "ai_36009e0baacf",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Do learned image captioning metrics generalize? Auditing duplicated samples in human-judgment benchmarks",
+        "summary": "Learned image captioning metrics are trained and tested on human judgments, so their reported correlation is a claim about generalization. We audit this claim for the three most recent collections of such judgments,…",
+        "url": "https://huggingface.co/papers/2611.30488",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_00cdf1ae8449",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "On-Policy Codec Distillation for Efficient All-in-One Video Generation",
+        "summary": "Modern visual generative models operate on tokens, and every visual asset they receive, whether an identity, a scribble, a depth map, or a motion video, is tokenized and appended to the input token sequence.…",
+        "url": "https://huggingface.co/papers/2611.31184",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "safety",
+        "lang": "en"
+      },
+      {
+        "id": "ai_84084d872d88",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Self-Evolving Evaluation Environments for Computer-Use Agents",
+        "summary": "Computer-use agents (CUAs) are rapidly improving, yet their evaluation remains largely static. Existing benchmarks provide a strong foundation, but fixed difficulty ceilings, limited feature coverage, and coarse…",
+        "url": "https://huggingface.co/papers/2611.30962",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_95b9273cc849",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "ACAP: Asynchronous Coding Agents for Efficient Robot Control",
+        "summary": "Coding agents can construct and revise robot behavior during execution, but using one agent for the whole robot can delay otherwise independent work. We introduce Asynchronous Coding Agents as Policy (ACAP), an…",
+        "url": "https://huggingface.co/papers/2611.31205",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_6d4a47c2eb45",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Rewirable Circuits in Transformers with Loom Attention",
+        "summary": "We propose loom attention, which allows a Transformer to dynamically rewire its circuits at every token by interweaving a head's vertical attention over the outputs of earlier heads (to obtain its query, key and value)…",
+        "url": "https://huggingface.co/papers/2611.30634",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
         "id": "ai_bed82431ae1f",
         "date": "2026-11-23",
         "publishedAt": "2026-11-22T18:08:43.000Z",
@@ -1744,6 +1924,42 @@
         "sourceId": "hf-papers",
         "sourceName": "Hugging Face Papers",
         "category": "safety",
+        "lang": "en"
+      },
+      {
+        "id": "ai_a7d0f7222e04",
+        "date": "2026-11-22",
+        "publishedAt": "2026-11-21T19:00:00.000Z",
+        "title": "PINE: Point, Instance and Normal Estimation in One-Step Diffusion Model",
+        "summary": "Understanding a scene requires both geometry and semantics: geometry recovers its spatial structure, and semantics separates it into objects. Current models obtain the two from separate networks or separate passes. We…",
+        "url": "https://huggingface.co/papers/2611.29389",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1617bf7741bb",
+        "date": "2026-11-22",
+        "publishedAt": "2026-11-21T19:00:00.000Z",
+        "title": "Align the Pair, Not the Sample: Representation Alignment for Faster and Better One-Step Generato",
+        "summary": "Representation alignment markedly accelerates diffusion training, but one-step generators raise a question that diffusion does not: which training path should receive the loss? A one-step generator sees two kinds of…",
+        "url": "https://huggingface.co/papers/2611.29547",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "safety",
+        "lang": "en"
+      },
+      {
+        "id": "ai_24e5acf7b30f",
+        "date": "2026-11-22",
+        "publishedAt": "2026-11-21T19:00:00.000Z",
+        "title": "Can an Agent Trust Its Own Zoom? Cross-Magnification Provenance Verification for Whole-Slide Images",
+        "summary": "Visual agents navigate whole-slide images through magnified observations associated with claimed locations. However, a visually plausible observation does not necessarily originate from its claimed location,…",
+        "url": "https://huggingface.co/papers/2611.29150",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
         "lang": "en"
       },
       {
@@ -2027,6 +2243,30 @@
         "lang": "en"
       },
       {
+        "id": "ai_634347b2b58c",
+        "date": "2026-11-21",
+        "publishedAt": "2026-11-20T19:00:00.000Z",
+        "title": "KMed-31B Technical Report",
+        "summary": "We present KMed-31B, a medical large language model post-trained from an open-weight model for on-premises deployment with limited hardware. Post-training a model for diverse medical tasks remains difficult, because…",
+        "url": "https://huggingface.co/papers/2611.28719",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_ccb9331ad406",
+        "date": "2026-11-21",
+        "publishedAt": "2026-11-20T19:00:00.000Z",
+        "title": "Don't Sleep, Keep Watch: Proactive Perception for Computer-Use Agents",
+        "summary": "Computer-use agents (CUAs) built on vision-language models are increasingly entrusted with long-horizon tasks in live desktop, web, and mobile environments, where the screen keeps changing on its own. However, current…",
+        "url": "https://huggingface.co/papers/2611.28947",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
         "id": "ai_2fdd7a0916ab",
         "date": "2026-11-21",
         "publishedAt": "2026-11-20T18:15:15.000Z",
@@ -2194,6 +2434,18 @@
         "sourceId": "hf-papers",
         "sourceName": "Hugging Face Papers",
         "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_8aefea9a56a2",
+        "date": "2026-11-19",
+        "publishedAt": "2026-11-18T19:00:00.000Z",
+        "title": "Interpretable Prototype-Conditioned Adaptation for Weather Forecasting",
+        "summary": "Data-driven weather forecasting requires distinguishing local states and their temporal evolution. However, learned patterns remain implicit in neural forecasters, making their influence difficult to interpret. Failing…",
+        "url": "https://huggingface.co/papers/2611.25848",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
         "lang": "en"
       }
     ],
@@ -3532,6 +3784,558 @@
       }
     ],
     "2026-11-25": [
+      {
+        "id": "ai_0aa2154153e1",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:21:04.000Z",
+        "title": "Seedance 2.5 级别，价格只要 1/10，我们实测了计划开源的 MAGI-2",
+        "summary": "AI 视频「烧钱」终结者 #欢迎关注爱范儿官方微信公众号：爱范儿（微信号：ifanr），更多精彩内容第一时间为您奉上。",
+        "url": "https://www.ifanr.com/1691445",
+        "sourceId": "ifanr-ai",
+        "sourceName": "爱范儿 AI 精选",
+        "category": "opensource",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_dce071d6582a",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Irreducible Governance Structure for Autonomous Agent Systems: Fair Allocation, Strategy-Proofness, and Multi-Scale Composition",
+        "summary": "arXiv:2611.31284v1 Announce Type: new Abstract: Autonomous agent governance is commonly framed as a problem of enforcing correct execution. However, in multi-agent systems, an equally fundamental question precedes…",
+        "url": "https://arxiv.org/abs/2611.31284",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_b02e0bf3eddf",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "MOZAIC: An Audio-Video Deepfake Benchmark for Telling What Is Fake",
+        "summary": "arXiv:2611.31301v1 Announce Type: new Abstract: Audio-video (AV) deepfakes can fake the face, the voice, or both. Most benchmarks only ask whether a clip is real or fake, so they cannot show whether a detector relies on…",
+        "url": "https://arxiv.org/abs/2611.31301",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_9b5199cc4b2a",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Conservative Overlap Fuzzy Rough Sets for Incomplete Data",
+        "summary": "arXiv:2611.31329v1 Announce Type: new Abstract: Attribute reduction in incomplete information systems is difficult because missing values break the equivalence-class structure of rough set theory. We propose the…",
+        "url": "https://arxiv.org/abs/2611.31329",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_bc1d896f2583",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Beyond Static Charts: Benchmarking Interactive Chart-to-Code Generation for MLLMs",
+        "summary": "arXiv:2611.31345v1 Announce Type: new Abstract: In recent years, multimodal large language models (MLLMs) have achieved significant progress in chart-to-code generation. However, existing benchmarks mainly focus on…",
+        "url": "https://arxiv.org/abs/2611.31345",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_9a43d7dd6fad",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "What People Choose Not to Say: A Multimodal Benchmark for Fine-Grained Information Manipulation in Conversations",
+        "summary": "arXiv:2611.31346v1 Announce Type: new Abstract: Recent advances in MLLMs have improved social understanding, enabling models to recognize emotions and distinguish truthful from deceptive behaviors. However, existing…",
+        "url": "https://arxiv.org/abs/2611.31346",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1e984615eec5",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Antares-Smaug: Adversarial Names, Tokens and Attack Rewrites: Sanitisers Miss Unseen Generalisations",
+        "summary": "arXiv:2611.31347v1 Announce Type: new Abstract: Laya is an open decision model: given a text, a question and K named options with descriptions, it returns one probability per option in a single pass, and software may…",
+        "url": "https://arxiv.org/abs/2611.31347",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_6d2a8f9c18b1",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "ContextLure: Exploiting Benign Conversation History for Indirect Prompt Injection",
+        "summary": "arXiv:2611.31424v1 Announce Type: new Abstract: As LLMs become more capable, agents can perform more complex tasks with tools and maintain longer interactions with users. These benign conversations contain evidence on…",
+        "url": "https://arxiv.org/abs/2611.31424",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_842222505d59",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Learning What vs. Learning How: Decomposing Task and Interface Competence in Agentic Training",
+        "summary": "arXiv:2611.31427v1 Announce Type: new Abstract: LLM agents operate through harnesses that define system prompts, action formats, feedback loops, and resource constraints. A model may possess the knowledge needed to…",
+        "url": "https://arxiv.org/abs/2611.31427",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_9216299406d0",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Taxi: Analyzing Agents at (Real) Scale",
+        "summary": "arXiv:2611.31457v1 Announce Type: new Abstract: In this technical report, we present Taxi -- a system for debugging, clustering, and monitoring agents at scale. Taxi scales to millions of steps efficiently. This is made…",
+        "url": "https://arxiv.org/abs/2611.31457",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_d97bcf0fef09",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "SpatialCraft: Evolving Procedural Intelligence from Experience and Skills for Spatial Reasoning Agents",
+        "summary": "arXiv:2611.31475v1 Announce Type: new Abstract: Spatial reasoning agents increasingly rely on external tools, such as 3D reconstruction, segmentation, and geometric computation, to answer questions that a multimodal…",
+        "url": "https://arxiv.org/abs/2611.31475",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_c810ea565aef",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Evaluating Frontier-Model Agent Skills with Open-Weight Models in a Science Gateway",
+        "summary": "arXiv:2611.31480v1 Announce Type: new Abstract: Scientific analyses that span many jobs and computing sites depend on workflow management systems to run reliably, but writing a production workflow requires expertise in…",
+        "url": "https://arxiv.org/abs/2611.31480",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_08f8a7fd6a70",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "XRL4T1D: A Post-hoc Explainability Framework for Reinforcement Learning in Type 1 Diabetes Management",
+        "summary": "arXiv:2611.31498v1 Announce Type: new Abstract: Type 1 diabetes (T1D) requires lifelong insulin therapy, and reinforcement learning (RL) has shown promise for automated dosing in the UVA/Padova simulator. However, the…",
+        "url": "https://arxiv.org/abs/2611.31498",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1d8eb48ffeed",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "PatientFlowSynth: Evaluating FHIR Agents with Matched Patient Charts",
+        "summary": "arXiv:2611.31521v1 Announce Type: new Abstract: Agents that search patient charts must classify claims from retrieved records, including cases with missing or conflicting evidence. In Fast Healthcare Interoperability…",
+        "url": "https://arxiv.org/abs/2611.31521",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_d0679e7d06a7",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "One Step, Four Clocks: How GUI Agents Fall Out of Step",
+        "summary": "arXiv:2611.31522v1 Announce Type: new Abstract: GUI agents can choose correct actions yet fail as interfaces change during deliberation. Latency alone cannot explain these failures because actions may become invalid at…",
+        "url": "https://arxiv.org/abs/2611.31522",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_8642462bbe8d",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Agent Evaluation Without Ground Truth: A Null Proportion Perspective",
+        "summary": "arXiv:2611.31539v1 Announce Type: new Abstract: The correctness of actions taken by agents is typically evaluated against known, externally verified ground truth labels, such as whether a proof is correct or whether…",
+        "url": "https://arxiv.org/abs/2611.31539",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_45d0a75ba29c",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Agent Recovery Gone Wrong: Measuring Harm Beyond Duplicate Calls",
+        "summary": "arXiv:2611.31554v1 Announce Type: new Abstract: Code-executing LLM agents submit blocks of code that issue several API writes. If a block fails after some of its writes have taken effect, the agent rewrites the block…",
+        "url": "https://arxiv.org/abs/2611.31554",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_4b55c71e9cce",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "COGENT: A Modular Cognitive Architecture for Agentic User Simulation",
+        "summary": "arXiv:2611.31559v1 Announce Type: new Abstract: LLM-based user simulation can support interface design, accessibility research, and interactive-agent evaluation, but standard computer-use agents are optimized for task…",
+        "url": "https://arxiv.org/abs/2611.31559",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_71e21bfe6093",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Off-the-Shelf Autonomous Agents for Game Playtesting",
+        "summary": "arXiv:2611.31570v1 Announce Type: new Abstract: In playtesting games, a human operator is typically required to test most gameplay elements. In this work we present Buddy, an autonomous game solving agent which can…",
+        "url": "https://arxiv.org/abs/2611.31570",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_e85d829d8674",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Safe Autoformalization: Sufficiency and Necessity with Entailment Graphs",
+        "summary": "arXiv:2611.31571v1 Announce Type: new Abstract: Autoformalization translates a natural-language statement into a formula that captures its intent, which depends on the statement's context: the background that…",
+        "url": "https://arxiv.org/abs/2611.31571",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1c3033b75869",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Provably Near-Optimal PQ in the Extended Zador Model",
+        "summary": "arXiv:2611.31579v1 Announce Type: new Abstract: This paper investigates Product Quantization (PQ) Optimization with Gaussian data. It offers three key contributions (i) a proof that SVD is the optimal preconditioning…",
+        "url": "https://arxiv.org/abs/2611.31579",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_eef28d1c21a8",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Frequency-Conditioned Privacy Auditing of Fine-Tuned Language Models",
+        "summary": "arXiv:2611.31581v1 Announce Type: new Abstract: Large language models are increasingly fine-tuned on sensitive data, where the same person's information may appear multiple times across records. This can cause models to…",
+        "url": "https://arxiv.org/abs/2611.31581",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_4d3997d08c35",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Monitorable-by-design architectures for a post-Astra world: a compartmentalization-based approach",
+        "summary": "arXiv:2611.31610v1 Announce Type: new Abstract: Frontier models like GPT-6 Astra are increasingly able to do substantial reasoning without a monitorable chain of thought, chains of thought are becoming less legible, and…",
+        "url": "https://arxiv.org/abs/2611.31610",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_e5fa006d6d35",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Multi-agent System for Automatic Discovery of Pareto-optimal Meta-solvers for PDEs",
+        "summary": "arXiv:2611.31611v1 Announce Type: new Abstract: Designing linear solvers for discretized partial differential equations requires problem-specific expertise. We present a multi-agent framework, in which language-model…",
+        "url": "https://arxiv.org/abs/2611.31611",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_fb383e81ffa8",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Self-Improving Long-Horizon Reasoning by Learning Summaries from Local Continuations",
+        "summary": "arXiv:2611.31621v1 Announce Type: new Abstract: Reasoning models degrade as their context grows, so longer reasoning traces do not by themselves give longer effective horizons. One way to extend the horizon is to…",
+        "url": "https://arxiv.org/abs/2611.31621",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_60604a1190b5",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Wavefront: Low-Rank Drafting with Parallel Causal Refinement for Speculative Decoding",
+        "summary": "arXiv:2611.31638v1 Announce Type: new Abstract: Speculative decoding accelerates LLM inference by letting a cheap drafter propose tokens that the target model verifies in parallel. Parallel block drafters such as DFlash…",
+        "url": "https://arxiv.org/abs/2611.31638",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_600513770b12",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "E2SIM: Long-Horizon Simulation of Everyday Human Behavior with Evolving States",
+        "summary": "arXiv:2611.31641v1 Announce Type: new Abstract: AI agents are increasingly expected to support users over long periods, across work, and daily life. This requires modeling not only who users are, but also how their…",
+        "url": "https://arxiv.org/abs/2611.31641",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_f4ea7faa424d",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Constructing physical mechanisms with artificial intelligence",
+        "summary": "arXiv:2611.31653v1 Announce Type: new Abstract: Mechanisms recur across the sciences: the equation for heat in a solid also describes molecular diffusion or a Brownian particle. A mechanism is rarely written in one…",
+        "url": "https://arxiv.org/abs/2611.31653",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_baaee125a7d0",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Stranded Compute in AI Inference Workloads: Recovering Value Through Demand Aggregation",
+        "summary": "arXiv:2611.31654v1 Announce Type: new Abstract: AI inference infrastructure is commonly analyzed as an energy business. Under full total cost accounting it is not: in the reference deployment modeled here, capital…",
+        "url": "https://arxiv.org/abs/2611.31654",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_44f36ef71e83",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "BRAG: Bayesian Retrieval Augmented Generation",
+        "summary": "arXiv:2611.31656v1 Announce Type: new Abstract: Retrieval-augmented generation (RAG) ranks memory chunks by semantic similarity to the query. Many methods improve on this by learning from feedback on what was retrieved,…",
+        "url": "https://arxiv.org/abs/2611.31656",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_f629944ee29d",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Look Before You Commit: Visual-Evidence-Guided Decoding for Multimodal Diffusion Language Models",
+        "summary": "arXiv:2611.31677v1 Announce Type: new Abstract: Diffusion multimodal large language models rely on confidence to decide when to commit candidate tokens during generation. In multimodal tasks, however, confidence cannot…",
+        "url": "https://arxiv.org/abs/2611.31677",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_fa789566d291",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "LimoBench: How Street Smart Are Large Language Models?",
+        "summary": "arXiv:2611.31682v1 Announce Type: new Abstract: Large language models (LLMs) have transformed how humans interact with information, enabling natural-language interfaces across various domains. They are increasingly…",
+        "url": "https://arxiv.org/abs/2611.31682",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_88b4fee0017b",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "CROSS-Calib: Selective Channel Calibration for Ultrasound Reconstruction",
+        "summary": "arXiv:2611.31684v1 Announce Type: new Abstract: Ultrasound imaging provides views of internal tissue in real time for medical diagnosis. However, ultrasound signals may be affected by interference, and correcting errors…",
+        "url": "https://arxiv.org/abs/2611.31684",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_942a72dbf7f3",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "PRETZEL: A Benchmark for Cyclic Peptide Structure Prediction",
+        "summary": "arXiv:2611.31708v1 Announce Type: new Abstract: Macrocyclic peptides are a growing therapeutic modality, and co-folding models are increasingly used to predict their structures. Yet published evaluations rely on small,…",
+        "url": "https://arxiv.org/abs/2611.31708",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_0ea9aa954b38",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Reproducing History Is Not Enough: Intervention-Level Assurance for LLM-Generated Simulators",
+        "summary": "arXiv:2611.31736v1 Announce Type: new Abstract: Large language models can now write simulation programs of operational processes and workflows. These programs can be reused to answer what-if questions on new records and…",
+        "url": "https://arxiv.org/abs/2611.31736",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_b663e004c743",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "GreenDynaMix: Thermal-Aware Dynamic Mixed-Precision MoE LLM Inference Systems",
+        "summary": "arXiv:2611.31737v1 Announce Type: new Abstract: Sustained Large Language Model (LLM) inference generates significant heat that exacerbates silicon aging and reduces GPU reliability. Because GPU temperature fluctuates…",
+        "url": "https://arxiv.org/abs/2611.31737",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_160e3afedf64",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "FN-Prune: Training-Free Expert Pruning with Finite RMSNorm Perturbations",
+        "summary": "arXiv:2611.31747v1 Announce Type: new Abstract: Expert pruning reduces the memory footprint of mixture-of-experts language models, but retaining model quality depends on which experts are removed. Frequency- and…",
+        "url": "https://arxiv.org/abs/2611.31747",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_6eb51df2aefb",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "TACT-Bench: Testing Adaptive Conversational Threats against Tool-Use Agents",
+        "summary": "arXiv:2611.31756v1 Announce Type: new Abstract: The growing autonomy of AI agents in using external tools and making decisions has created an urgent need for comprehensive safety benchmarks. Existing benchmarks test…",
+        "url": "https://arxiv.org/abs/2611.31756",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_fa3edd752ff1",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "Verified Proof Refactoring with Codex and Qwen",
+        "summary": "arXiv:2611.31762v1 Announce Type: new Abstract: We refactor existing Lean 4 proofs to reduce source length and checking cost while preserving theorem statements and compatibility across Lean versions. A locally served…",
+        "url": "https://arxiv.org/abs/2611.31762",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_7806e40164c0",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "SciFig2Data: A Workflow for Recovering Structured Data from Scientific Figures",
+        "summary": "arXiv:2611.31787v1 Announce Type: new Abstract: Scientific measurements reported in scholarly articles are often embedded in compound figures rather than available as machine-readable data. Recovering these measurements…",
+        "url": "https://arxiv.org/abs/2611.31787",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_8eb6158b7163",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T05:00:00.000Z",
+        "title": "AGL-SKILL: Coding Harnesses as Agentic Optimizers",
+        "summary": "arXiv:2611.31794v1 Announce Type: new Abstract: Frontier models are increasingly used through harnesses as agents, with growing autonomy to do useful work. Agent performance can often be enhanced by the use of skills:…",
+        "url": "https://arxiv.org/abs/2611.31794",
+        "sourceId": "arxiv-ai",
+        "sourceName": "arXiv cs.AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_d6a3974a1a3c",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T00:12:02.000Z",
+        "title": "Yale’s Sonnenfeld: Nvidia is a ‘detriment’ to US industrial might — not a champion",
+        "summary": "Yale's Jeffrey Sonnenfeld warns that what the market cheered Monday, Jensen Huang's White House–backed return as Nvidia's CEO and board member, could prove a giant mistake, exposing the directors to \"historic\" personal…",
+        "url": "https://techcrunch.com/2026/11/24/yales-sonnenfeld-nvidia-is-a-detriment-to-u-s-industrial-might-not-a-champion",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_13eb34149e4f",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T00:08:21.000Z",
+        "title": "早报｜黄仁勋复职后首开全员大会致歉/豆包推出AI个人助理「小豆」/华为鸿蒙终端突破1亿台",
+        "summary": "· 华为发布 Mate X8、Mate 90 Air 和小折叠电脑 MateBook Fold S · 神舟二十四号任务将开展一年期在轨驻留试验 · PlayStation 公布《GTA 6》首发数据，四天吸引逾 3900 万玩家 #欢迎关注爱范儿官方微信公众号：爱范儿（微信号：ifanr），更多精彩内容第一时间为您奉上。",
+        "url": "https://www.ifanr.com/1691400",
+        "sourceId": "ifanr-ai",
+        "sourceName": "爱范儿 AI 精选",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_6d8cd4cbfa4e",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T23:39:04.000Z",
+        "title": "Jensen Huang’s Return Shows Nvidia Is Too Big to Police",
+        "summary": "Nvidia’s place at the center of the US economy may have outweighed concerns about its CEO’s ties to a suspected Chinese intelligence asset, national security and foreign policy experts say.",
+        "url": "https://www.wired.com/story/jensen-huang-nvidia-us-national-security-risks",
+        "sourceId": "wired-ai",
+        "sourceName": "WIRED AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_bc426bbbebd7",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T22:27:52.000Z",
+        "title": "Jensen Huang still thinks a succession plan creates unnecessary hierarchy",
+        "summary": "It's a remarkable stance for a company that spent the last two weeks finding out what happens without its founder.",
+        "url": "https://techcrunch.com/2026/11/24/jensen-huang-still-thinks-a-succession-plan-creates-unnecessary-hierarchy",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_72fd424c711a",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T21:48:27.000Z",
+        "title": "In all-hands meeting, Jensen Huang thanks White House and says he’s in therapy",
+        "summary": "The Nvidia founder apologized to his staff on Tuesday and said he was grateful for a second chance to lead the company.",
+        "url": "https://techcrunch.com/2026/11/24/in-all-hands-meeting-jensen-huang-thanks-white-house-and-says-hes-in-therapy",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
       {
         "id": "ai_71615ee1ebfd",
         "date": "2026-11-25",
