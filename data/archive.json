@@ -1,7 +1,7 @@
 {
   "version": 1,
   "meta": {
-    "lastSyncAt": "2026-11-26T05:45:44.726Z",
+    "lastSyncAt": "2026-11-26T20:39:28.329Z",
     "autoSyncIntervalMinutes": 30,
     "sourceStatuses": [
       {
@@ -11,7 +11,7 @@
         "homeUrl": "https://news.ycombinator.com/",
         "status": "ok",
         "count": 0,
-        "checkedAt": "2026-11-26T05:45:42.603Z"
+        "checkedAt": "2026-11-26T20:39:26.109Z"
       },
       {
         "id": "hf-papers",
@@ -20,7 +20,7 @@
         "homeUrl": "https://huggingface.co/papers",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-26T05:45:42.642Z"
+        "checkedAt": "2026-11-26T20:39:26.141Z"
       },
       {
         "id": "arxiv-ai",
@@ -29,7 +29,7 @@
         "homeUrl": "https://arxiv.org/list/cs.AI/recent",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-26T05:45:42.643Z"
+        "checkedAt": "2026-11-26T20:39:26.142Z"
       },
       {
         "id": "openai-news",
@@ -38,7 +38,7 @@
         "homeUrl": "https://openai.com/news",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-26T05:45:42.644Z"
+        "checkedAt": "2026-11-26T20:39:26.143Z"
       },
       {
         "id": "techcrunch-ai",
@@ -47,7 +47,7 @@
         "homeUrl": "https://techcrunch.com/category/artificial-intelligence/",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-26T05:45:42.645Z"
+        "checkedAt": "2026-11-26T20:39:26.144Z"
       },
       {
         "id": "verge-ai",
@@ -56,7 +56,7 @@
         "homeUrl": "https://www.theverge.com/ai-artificial-intelligence",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-26T05:45:42.646Z"
+        "checkedAt": "2026-11-26T20:39:26.145Z"
       },
       {
         "id": "wired-ai",
@@ -65,7 +65,7 @@
         "homeUrl": "https://www.wired.com/tag/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-26T05:45:42.647Z"
+        "checkedAt": "2026-11-26T20:39:26.145Z"
       },
       {
         "id": "mit-ai",
@@ -74,7 +74,7 @@
         "homeUrl": "https://www.technologyreview.com/topic/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-26T05:45:42.647Z"
+        "checkedAt": "2026-11-26T20:39:26.146Z"
       },
       {
         "id": "qbitai",
@@ -83,7 +83,7 @@
         "homeUrl": "https://www.qbitai.com/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-26T05:45:42.648Z"
+        "checkedAt": "2026-11-26T20:39:26.147Z"
       },
       {
         "id": "ifanr-ai",
@@ -91,8 +91,8 @@
         "lang": "zh",
         "homeUrl": "https://www.ifanr.com/",
         "status": "ok",
-        "count": 11,
-        "checkedAt": "2026-11-26T05:45:42.650Z"
+        "count": 9,
+        "checkedAt": "2026-11-26T20:39:26.148Z"
       }
     ]
   },
@@ -1299,6 +1299,66 @@
         "lang": "en"
       },
       {
+        "id": "ai_dbfe714c492f",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "AIChipBench: Benchmarking LLM Agents for Automated AI Accelerator Design",
+        "summary": "A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token correct and corrupt the output several tokens later, so a design can pass output tests and…",
+        "url": "https://huggingface.co/papers/2611.33093",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_e1360c67afed",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "GOLD-SLAM: Gaussian-splatting Omnidirectional LiDAR-Depth SLAM",
+        "summary": "Panoramic cameras capture nearly the entire spherical field of view in a single frame. However, the mismatch between this panoramic coverage and the field of view of LiDAR poses a substantial challenge for panoramic…",
+        "url": "https://huggingface.co/papers/2611.32335",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "safety",
+        "lang": "en"
+      },
+      {
+        "id": "ai_5f705d3f5490",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Efficient Video Retrieval Augmented Generation via Token Allocation",
+        "summary": "Efficient long-video understanding requires identifying relevant evidence while minimizing the tokens processed by vision-language models (VLMs). Existing video retrieval-augmented generation (RAG) methods rely on frame…",
+        "url": "https://huggingface.co/papers/2611.32938",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_afb6e19cde34",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Simulator-as-Proxy World Model for Robot Manipulation",
+        "summary": "Video world models for robots are increasingly conditioned on a simulated or rendered proxy of the scene, on the assumption that the video will show what the proxy shows. Testing this assumption requires a proxy whose…",
+        "url": "https://huggingface.co/papers/2611.32786",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_cb53a5e3e59b",
+        "date": "2026-11-24",
+        "publishedAt": "2026-11-23T19:00:00.000Z",
+        "title": "Lost in Translation, Not in Confidence: Benchmarking and Calibrating Multilingual Decision Models",
+        "summary": "Decision models are language models fine-tuned to return a probability for each option of a typed query, which routers and guardrails threshold directly. They are built on multilingual bases but ranked almost entirely…",
+        "url": "https://huggingface.co/papers/2611.33307",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
         "id": "ai_786a4f32021c",
         "date": "2026-11-24",
         "publishedAt": "2026-11-23T18:26:47.000Z",
@@ -2009,6 +2069,30 @@
         "lang": "en"
       },
       {
+        "id": "ai_493f9f9e6ff8",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "When Does Reasoning Help Entity Disambiguation? Small LLMs In-Domain and Under Shift",
+        "summary": "Entity disambiguation (mapping ambiguous mentions in text to entities in a knowledge base) is a foundational step in tasks such as knowledge graph construction, question answering, and information extraction. Recent…",
+        "url": "https://huggingface.co/papers/2611.30334",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_50feeb157090",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Let Vision-Language Models Generate Images through Their Representations",
+        "summary": "Recent unified multimodal models aim to combine visual understanding and generation within a single model, yet effectively integrating the two capabilities remains challenging. Leveraging pretrained vision-language…",
+        "url": "https://huggingface.co/papers/2611.31237",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
         "id": "ai_bed82431ae1f",
         "date": "2026-11-23",
         "publishedAt": "2026-11-22T18:08:43.000Z",
@@ -2173,6 +2257,18 @@
         "title": "Can an Agent Trust Its Own Zoom? Cross-Magnification Provenance Verification for Whole-Slide Images",
         "summary": "Visual agents navigate whole-slide images through magnified observations associated with claimed locations. However, a visually plausible observation does not necessarily originate from its claimed location,…",
         "url": "https://huggingface.co/papers/2611.29150",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_b6d8986dac67",
+        "date": "2026-11-22",
+        "publishedAt": "2026-11-21T19:00:00.000Z",
+        "title": "Look Back: Reinforcement Learning with Counterfactual World Models",
+        "summary": "Agents in complex, stochastic environments must contend with dynamics that can exceed their world models' predictive capacity and randomness that obscure the consequences of their actions. We hypothesize that, compared…",
+        "url": "https://huggingface.co/papers/2611.29259",
         "sourceId": "hf-papers",
         "sourceName": "Hugging Face Papers",
         "category": "agent",
@@ -2370,6 +2466,18 @@
         "sourceId": "hf-papers",
         "sourceName": "Hugging Face Papers",
         "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_a3283495e55e",
+        "date": "2026-11-20",
+        "publishedAt": "2026-11-19T19:00:00.000Z",
+        "title": "Demystifying the Autoresearch Harness: How Context and Skills Shape Self-Evolving Agents",
+        "summary": "Autoresearch agents, which autonomously design, run, and refine experiments, are accelerating scientific progress, particularly in AI research. However, existing agents rely on harnesses that combine multiple…",
+        "url": "https://huggingface.co/papers/2611.28244",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
         "lang": "en"
       }
     ],
@@ -3162,6 +3270,30 @@
         "sourceId": "openai-news",
         "sourceName": "OpenAI News",
         "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_1c013b363c30",
+        "date": "2026-11-16",
+        "publishedAt": "2026-11-15T19:00:00.000Z",
+        "title": "Edit Recommendation: Can LLMs Anticipate Edit Requests from Users, and When?",
+        "summary": "After a large language model (LLM) agent generates an artifact, users often send edit requests for it. This paper studies whether an LLM can anticipate these requests before they are sent. Such anticipation is useful in…",
+        "url": "https://huggingface.co/papers/2611.21155",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_66fe800a733b",
+        "date": "2026-11-16",
+        "publishedAt": "2026-11-15T19:00:00.000Z",
+        "title": "Evaluation-Free Recursive Self-Improvement for Coding Agents",
+        "summary": "Recent self-improving coding agents have achieved strong benchmark performance by iteratively modifying their own executable implementations. A common pattern uses downstream task-derived evidence to decide which…",
+        "url": "https://huggingface.co/papers/2611.21056",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
         "lang": "en"
       }
     ],
@@ -4181,6 +4313,18 @@
         "lang": "zh"
       },
       {
+        "id": "ai_e379f0982485",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-25T10:47:45.000Z",
+        "title": "蔚来发布 NOMI 4.0！0.6 秒极速响应，正式迈入「智能体」时代",
+        "summary": "当汽车成为物理 AI 的核心载体，一家车企该如何用 AI 重塑自己？ #欢迎关注爱范儿官方微信公众号：爱范儿（微信号：ifanr），更多精彩内容第一时间为您奉上。",
+        "url": "https://www.ifanr.com/1695482",
+        "sourceId": "ifanr-ai",
+        "sourceName": "爱范儿 AI 精选",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
         "id": "ai_570b39bfa866",
         "date": "2026-11-25",
         "publishedAt": "2026-11-25T10:00:00.000Z",
@@ -5045,6 +5189,114 @@
         "lang": "en"
       },
       {
+        "id": "ai_cb8151258282",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "Single-Database Rewards Are Hackable: Counterfactual Execution for Trustworthy Text-to-SQL RL",
+        "summary": "Reinforcement learning (RL) for text-to-SQL agents pays a query when its result matches the reference on one database. However, a wrong query can match by luck when the data lack the rows that expose its bug. We study a…",
+        "url": "https://huggingface.co/papers/2611.34363",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_2a158353075b",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "Entangle: Scaling Human-Video In-Context World-Action Models across Unseen Tasks and Contexts",
+        "summary": "In-context learning (ICL) enables foundation models to perform unseen tasks from context without parameter updates. In robotic manipulation, a human video provides the context that specifies how a task should be…",
+        "url": "https://huggingface.co/papers/2611.28732",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_0847dde62f83",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "WorldBridge: Bridging Scattered Views for Coherent 3D World Generation",
+        "summary": "Generating coherent and explorable 3D worlds from scattered images with little or no visual overlap is a fundamental and long-standing challenge in computer vision, which existing geometry-aware methods fail to address.…",
+        "url": "https://huggingface.co/papers/2611.34079",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_e930ca6c02d4",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "Letting Models Manage Their Own Context: Where We Stand",
+        "summary": "Agent harnesses today manage context on the model's behalf: when the window fills, the harness triggers a compaction that summarizes the history. We study the alternative, model-driven context management, in which the…",
+        "url": "https://huggingface.co/papers/2611.34147",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_df180c06dc6c",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "When Every Rollout Fails: Splicing Learner-Conditioned Options into Long-Horizon Agent RL",
+        "summary": "Group-based reinforcement learning with verifiable rewards often yields all-fail groups on long-horizon agent tasks: every sampled trajectory receives zero reward, leaving group-relative methods without a reward-based…",
+        "url": "https://huggingface.co/papers/2611.34777",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_119c3112f424",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "Collect for Coverage, Replay with Evidence: Adaptive and Efficient On-Policy Distillation for Long-Horizon Agents",
+        "summary": "Fully online on-policy distillation (OPD) is costly for long-horizon agents because each update depends on fresh environment rollouts. Prefix replay offers an efficient alternative by sampling current-student responses…",
+        "url": "https://huggingface.co/papers/2611.34756",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_84d461fa64c7",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "A Mesh for Every Moment",
+        "summary": "We present MEMO (a Mesh for Every MOment), a method that reconstructs the geometry of complete dynamic scenes, captured by multiple synchronized cameras, and extracts a mesh at every frame. Existing dynamic Gaussian…",
+        "url": "https://huggingface.co/papers/2611.34939",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "safety",
+        "lang": "en"
+      },
+      {
+        "id": "ai_4b0509310e9e",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "DexEngine: Scaling Human Demonstrations into Physically Executable Whole-Robot Data",
+        "summary": "A growing body of recent work addresses the retargeting of human hand-object demonstrations to robotic hands. To train whole-robot policies, however, the retargeted motions must be kinematically feasible and physically…",
+        "url": "https://huggingface.co/papers/2611.33579",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_231bf705081b",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "DemoFoundry: Toward Scalable Photorealistic Robot Data with Coding Agents and Generative Rendering",
+        "summary": "Scaling robot learning requires demonstrations that combine realistic visual observations with reliable action supervision. Simulation-based synthesis faces a substantial visual gap relative to real environments, while…",
+        "url": "https://huggingface.co/papers/2611.34671",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
         "id": "ai_9824edc2f485",
         "date": "2026-11-25",
         "publishedAt": "2026-11-24T18:30:42.000Z",
@@ -5190,6 +5442,102 @@
       }
     ],
     "2026-11-26": [
+      {
+        "id": "ai_bde07cc51df5",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T13:56:01.000Z",
+        "title": "381个AI直播冲刺证明P=NP！把GitHub干崩了",
+        "summary": "已跑了超过一万次会话，在Lean4里验证通过了2400多条引理",
+        "url": "https://www.qbitai.com/2026/11/513021.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "opensource",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_9d4216d97ef5",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T12:39:08.000Z",
+        "title": "AI 3D界的“X光”来了！一图直出巴洛克雕塑，3D打印开箱即用",
+        "summary": "还得是科班尖子生",
+        "url": "https://www.qbitai.com/2026/11/512981.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_bc66c35111aa",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T10:51:27.000Z",
+        "title": "Meta Refused to Share Muse for Testing, UK Financial Watchdog Complains",
+        "summary": "The FCA warned against “another force of attack” from agents after the company declined a request to work on joint testing ahead of rolling out its personal agent in the UK on Tuesday.",
+        "url": "https://www.wired.com/story/meta-refused-to-share-muse-for-testing-uk-financial-watchdog-complains",
+        "sourceId": "wired-ai",
+        "sourceName": "WIRED AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_2a9ecf843209",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T10:07:55.000Z",
+        "title": "90 秒自动换装补能，具微科技“潘多拉”支撑机器人无人化值守",
+        "summary": "全栈方案破解工业机器人连续作业难题",
+        "url": "https://www.qbitai.com/2026/11/512972.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "opensource",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_c0f2de19f056",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T09:54:40.000Z",
+        "title": "42 state AGs are trying to stop Character.AI from selling users’ chats",
+        "summary": "A coalition of 42 state attorneys general is trying to prevent Character.AI from selling off user data as it navigates Chapter 11 bankruptcy proceedings. In a deluge of nearly identical press releases, the various AGs…",
+        "url": "https://www.theverge.com/policy/1042620/character-ai-sale-state-ags-block-selling-users-chats",
+        "sourceId": "verge-ai",
+        "sourceName": "The Verge AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_2c605e196bd0",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T08:19:20.000Z",
+        "title": "极客公园创新大会 2027 全议程公布！",
+        "summary": "今天，IF 2027 全议程揭晓。",
+        "url": "https://www.qbitai.com/2026/11/512952.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_be49b5911a18",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T07:36:04.000Z",
+        "title": "报名最后2天｜AI浪潮之中，来认识创造未来的人",
+        "summary": "12月6日，WAIC将携手第六届“海聚英才”全球创新创业峰会，把这场关于“人”的讨论带回现场。",
+        "url": "https://www.qbitai.com/2026/11/512942.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_e55362f3820b",
+        "date": "2026-11-26",
+        "publishedAt": "2026-11-26T06:41:23.000Z",
+        "title": "顶尖商用级AI视频每秒只要5毛！中国开源新势力拿下全球第一",
+        "summary": "30秒一镜到底，可自动编排镜头",
+        "url": "https://www.qbitai.com/2026/11/512916.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "opensource",
+        "lang": "zh"
+      },
       {
         "id": "ai_5aa9e3310d13",
         "date": "2026-11-26",
@@ -5860,6 +6208,32 @@
         "sourceId": "verge-ai",
         "sourceName": "The Verge AI",
         "category": "agent",
+        "lang": "en"
+      }
+    ],
+    "2026-11-27": [
+      {
+        "id": "ai_c881f1e71110",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-26T20:03:54.000Z",
+        "title": "Nvidia hits pause on chip shipments to Southeast Asia",
+        "summary": "Nvidia has told manufacturing partners to pause server shipments to Malaysia, Singapore, Thailand and Indonesia as the U.S. tightens its push to keep AI chips out of China.",
+        "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
+        "id": "ai_ec74e9ba2187",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-26T16:00:00.000Z",
+        "title": "Grand Theft Auto VI proves why efficiency isn’t a virtue",
+        "summary": "On the same day that Anthropic entered the public market, a painstakingly human video game became one of most successful entertainment launches of all time.",
+        "url": "https://techcrunch.com/2026/11/26/as-anthropic-ipos-grand-theft-auto-vi-proves-why-efficiency-isnt-a-virtue",
+        "sourceId": "techcrunch-ai",
+        "sourceName": "TechCrunch AI",
+        "category": "industry",
         "lang": "en"
       }
     ]
