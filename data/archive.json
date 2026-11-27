@@ -1,7 +1,7 @@
 {
   "version": 1,
   "meta": {
-    "lastSyncAt": "2026-11-27T05:40:40.908Z",
+    "lastSyncAt": "2026-11-27T20:25:56.034Z",
     "autoSyncIntervalMinutes": 30,
     "sourceStatuses": [
       {
@@ -11,7 +11,7 @@
         "homeUrl": "https://news.ycombinator.com/",
         "status": "ok",
         "count": 0,
-        "checkedAt": "2026-11-27T05:40:38.942Z"
+        "checkedAt": "2026-11-27T20:25:54.095Z"
       },
       {
         "id": "hf-papers",
@@ -20,7 +20,7 @@
         "homeUrl": "https://huggingface.co/papers",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-27T05:40:38.982Z"
+        "checkedAt": "2026-11-27T20:25:54.142Z"
       },
       {
         "id": "arxiv-ai",
@@ -29,7 +29,7 @@
         "homeUrl": "https://arxiv.org/list/cs.AI/recent",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-27T05:40:38.984Z"
+        "checkedAt": "2026-11-27T20:25:54.143Z"
       },
       {
         "id": "openai-news",
@@ -38,7 +38,7 @@
         "homeUrl": "https://openai.com/news",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-27T05:40:38.985Z"
+        "checkedAt": "2026-11-27T20:25:54.144Z"
       },
       {
         "id": "techcrunch-ai",
@@ -47,7 +47,7 @@
         "homeUrl": "https://techcrunch.com/category/artificial-intelligence/",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-27T05:40:38.986Z"
+        "checkedAt": "2026-11-27T20:25:54.145Z"
       },
       {
         "id": "verge-ai",
@@ -56,7 +56,7 @@
         "homeUrl": "https://www.theverge.com/ai-artificial-intelligence",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T05:40:38.987Z"
+        "checkedAt": "2026-11-27T20:25:54.146Z"
       },
       {
         "id": "wired-ai",
@@ -65,7 +65,7 @@
         "homeUrl": "https://www.wired.com/tag/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T05:40:38.988Z"
+        "checkedAt": "2026-11-27T20:25:54.147Z"
       },
       {
         "id": "mit-ai",
@@ -74,7 +74,7 @@
         "homeUrl": "https://www.technologyreview.com/topic/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T05:40:38.988Z"
+        "checkedAt": "2026-11-27T20:25:54.148Z"
       },
       {
         "id": "qbitai",
@@ -83,7 +83,7 @@
         "homeUrl": "https://www.qbitai.com/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T05:40:38.989Z"
+        "checkedAt": "2026-11-27T20:25:54.149Z"
       },
       {
         "id": "ifanr-ai",
@@ -91,8 +91,8 @@
         "lang": "zh",
         "homeUrl": "https://www.ifanr.com/",
         "status": "ok",
-        "count": 8,
-        "checkedAt": "2026-11-27T05:40:38.991Z"
+        "count": 3,
+        "checkedAt": "2026-11-27T20:25:54.151Z"
       }
     ]
   },
@@ -2141,6 +2141,90 @@
         "lang": "en"
       },
       {
+        "id": "ai_ba3e993ef631",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Damped Atomic Wave Integration Neurons (DAWIN): A Universal Primitive for Continuous-Time Spatiotemporal Learning",
+        "summary": "Conventional artificial neurons separate spatial feature aggregation from continuous physical time, limiting their ability to model irregular observations. We introduce the Damped Atomic Wave Integration Neuron (DAWIN),…",
+        "url": "https://huggingface.co/papers/2611.30025",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_930a042a77ff",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "BiSAT: Bidirectionally Aligned Semantic-Acoustic Tokenization for Speech Language Models",
+        "summary": "Speech language models (LMs) generate speech as sequences of discrete tokens. Their tokenizer must therefore preserve both acoustic detail and linguistic content at a low bitrate. Semantic-enhanced tokenizers may lose…",
+        "url": "https://huggingface.co/papers/2611.30723",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_126501aed612",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Revisiting LLMs as Context Engineers",
+        "summary": "As large language models (LLMs) are used in more and more new tasks, context engineering becomes a fundamental method to efficiently steer LLMs by constructing instruction prompts or metadata without intensive training.…",
+        "url": "https://huggingface.co/papers/2611.30494",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_bd9323617ffb",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "InitFree-SfM: When Initialization-Free Bundle Adjustment meets Learned Structure-from-Motion",
+        "summary": "Initialization-free bundle adjustment (InitFree BA) aims to jointly recover camera poses and scene structure without requiring an initial global estimate. It is a very challenging problem, especially compared to…",
+        "url": "https://huggingface.co/papers/2611.31516",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_aa5cf4fda426",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "So Many Ways to Multiply 3times3 Matrices: A Large Dataset of Rank-23 Schemes",
+        "summary": "A publicly available dataset of 62029 rank-23 schemes for 3times3 matrix multiplication is presented. Every scheme in it has its own rank pattern, an invariant formed by the ranks of the factor matrices of a scheme, so…",
+        "url": "https://huggingface.co/papers/2611.31155",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_74cb5bdf3d60",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "Pretrained Tabular Features and the Measurement of Financial Proximity",
+        "summary": "Spatial arbitrage pricing theory (S-APT) extends factor models to allow returns to spill over between connected firms, beyond what common risk factors explain. In recent years, tabular foundation models (TFMs) have…",
+        "url": "https://huggingface.co/papers/2611.31491",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
+        "id": "ai_9636993dcbef",
+        "date": "2026-11-23",
+        "publishedAt": "2026-11-22T19:00:00.000Z",
+        "title": "What a Forecasting Leaderboard Can Establish: Resolution Reporting for Zero-Shot Time-Series Models",
+        "summary": "A foundation model for time series is pretrained once and then asked to forecast series it has never seen, so the evidence for it is its score on held-out datasets. Such datasets are scarce, and a few public…",
+        "url": "https://huggingface.co/papers/2611.31619",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
+        "lang": "en"
+      },
+      {
         "id": "ai_bed82431ae1f",
         "date": "2026-11-23",
         "publishedAt": "2026-11-22T18:08:43.000Z",
@@ -2551,6 +2635,18 @@
         "sourceName": "Hugging Face Papers",
         "category": "agent",
         "lang": "en"
+      },
+      {
+        "id": "ai_8620be798fed",
+        "date": "2026-11-20",
+        "publishedAt": "2026-11-19T19:00:00.000Z",
+        "title": "Markdown Is Not a Firewall: four coding agents, one rules file, four boundaries",
+        "summary": "Teams put a one-page rules file in a repository and call it a control on coding agents. A registered study found agents rarely look up a repository's contribution rules. I asked the security question: what does a rules…",
+        "url": "https://huggingface.co/papers/2611.27112",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "agent",
+        "lang": "en"
       }
     ],
     "2026-11-21": [
@@ -2684,6 +2780,18 @@
         "sourceId": "hf-papers",
         "sourceName": "Hugging Face Papers",
         "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_fff048707165",
+        "date": "2026-11-21",
+        "publishedAt": "2026-11-20T19:00:00.000Z",
+        "title": "Guarding with Judgment: Learning to Intervene for Multimodal Safety",
+        "summary": "When visual context makes an ordinary request unsafe to answer as asked, a blanket refusal may leave the user's need unresolved. Choosing how to help requires distinguishing an established hazard from a condition that…",
+        "url": "https://huggingface.co/papers/2611.28849",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "model",
         "lang": "en"
       },
       {
@@ -5477,6 +5585,18 @@
         "lang": "en"
       },
       {
+        "id": "ai_61e574bea359",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "Generation as Reverse Encoding",
+        "summary": "Pretrained visual representations accelerate generative learning by abstracting away appearance and spatial detail. Yet the same abstraction makes the return to pixels far harder, shifting much of the burden onto a…",
+        "url": "https://huggingface.co/papers/2611.34782",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
         "id": "ai_9824edc2f485",
         "date": "2026-11-25",
         "publishedAt": "2026-11-24T18:30:42.000Z",
@@ -6405,6 +6525,114 @@
     ],
     "2026-11-27": [
       {
+        "id": "ai_6aa339a9d536",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T14:07:33.000Z",
+        "title": "人形机器人开发者集合！众擎开放大小脑，10亿产业级生态支持计划也来了",
+        "summary": "一支团队在真机上验证的成果，可以成为下一支团队继续开发的起点。",
+        "url": "https://www.qbitai.com/2026/11/513352.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "opensource",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_24644713102c",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T14:00:00.000Z",
+        "title": "Android’s DIY widgets are a bit of vibe-coding fun",
+        "summary": "Aside from dealing with my calendar, there's one thing I want AI to do: tell me if I'm about to miss the bus. What I need is a widget. It needs to tell me real-time arrivals for the bus stop near my house. Tapping…",
+        "url": "https://www.theverge.com/tech/1041801/android-intelligence-create-my-widget-gemini",
+        "sourceId": "verge-ai",
+        "sourceName": "The Verge AI",
+        "category": "agent",
+        "lang": "en"
+      },
+      {
+        "id": "ai_005b7c4e65ee",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T11:18:24.000Z",
+        "title": "全国首批首家！商汤大装置获Token工厂智算能力最高评级",
+        "summary": "商汤大装置Token工厂获得中国信通院Token工厂智算能力评估“全栈服务型·领先级”评级认证",
+        "url": "https://www.qbitai.com/2026/11/513346.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_d7eed60e59d1",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T10:01:35.000Z",
+        "title": "Agent 上车元年，支付宝造了一个行动座舱",
+        "summary": "智能座舱的下半场，正在从「对话智能」步入「行动智能」。 #欢迎关注爱范儿官方微信公众号：爱范儿（微信号：ifanr），更多精彩内容第一时间为您奉上。",
+        "url": "https://www.ifanr.com/1695888",
+        "sourceId": "ifanr-ai",
+        "sourceName": "爱范儿 AI 精选",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_e357b0c84894",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T09:06:19.000Z",
+        "title": "Claude Opus 5.6 做出了史上最牛的 PPT，直接杀死比赛？",
+        "summary": "这可能是我们见过最离谱的 AI 生成 PPT。 #欢迎关注爱范儿官方微信公众号：爱范儿（微信号：ifanr），更多精彩内容第一时间为您奉上。",
+        "url": "https://www.ifanr.com/1695831",
+        "sourceId": "ifanr-ai",
+        "sourceName": "爱范儿 AI 精选",
+        "category": "model",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_cc54ca76b885",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T07:39:18.000Z",
+        "title": "韦东奕再获大奖！攻克近140年数学难题，获两位院士共同提名",
+        "summary": "淡泊名利，实至名归🎉",
+        "url": "https://www.qbitai.com/2026/11/513320.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "model",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_4d9d55e7b393",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T07:29:10.000Z",
+        "title": "DeepSeek APP突然更新账单，网友：要收费了？",
+        "summary": "网页App双端亮出聊天账单",
+        "url": "https://www.qbitai.com/2026/11/513305.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "model",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_44a871db658d",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T07:01:20.000Z",
+        "title": "刚刚，首个带跨任务空间记忆的原生基模开源！机器人端侧就能跑",
+        "summary": "地图能随时修，记忆能跨任务用",
+        "url": "https://www.qbitai.com/2026/11/513227.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "opensource",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_a73645a794d1",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T07:00:00.000Z",
+        "title": "A New Breed of Chip Runs AI Models Using Waves of Light",
+        "summary": "German company Q.ANT is trying to cut the amount of energy required to run AI models by using light to perform the toughest calculations.",
+        "url": "https://www.wired.com/story/a-new-breed-of-chip-runs-ai-models-using-waves-of-light",
+        "sourceId": "wired-ai",
+        "sourceName": "WIRED AI",
+        "category": "industry",
+        "lang": "en"
+      },
+      {
         "id": "ai_5aa9e3310d13",
         "date": "2026-11-27",
         "publishedAt": "2026-11-27T05:00:00.000Z",
@@ -6883,6 +7111,30 @@
         "sourceName": "arXiv cs.AI",
         "category": "agent",
         "lang": "en"
+      },
+      {
+        "id": "ai_22df109b65d8",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T04:05:56.000Z",
+        "title": "钛动科技 × 腾讯云达成战略合作，用AI打开企业全球增长新空间",
+        "summary": "企业需要有用的 AI",
+        "url": "https://www.qbitai.com/2026/11/513194.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
+      },
+      {
+        "id": "ai_755aa823de8d",
+        "date": "2026-11-27",
+        "publishedAt": "2026-11-27T04:05:18.000Z",
+        "title": "蚂蚁灵波发布LingBot-Map 2.0，模型自己修正“空间记忆”，把地图画更准",
+        "summary": "11 月 27 日，蚂蚁灵波科技发布流式三维重建模型 LingBot-Map 2.0",
+        "url": "https://www.qbitai.com/2026/11/513211.html",
+        "sourceId": "qbitai",
+        "sourceName": "量子位",
+        "category": "agent",
+        "lang": "zh"
       },
       {
         "id": "ai_e01a04001d16",
