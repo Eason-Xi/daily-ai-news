@@ -1,7 +1,7 @@
 {
   "version": 1,
   "meta": {
-    "lastSyncAt": "2026-11-27T20:25:56.034Z",
+    "lastSyncAt": "2026-11-28T05:19:19.404Z",
     "autoSyncIntervalMinutes": 30,
     "sourceStatuses": [
       {
@@ -11,7 +11,7 @@
         "homeUrl": "https://news.ycombinator.com/",
         "status": "ok",
         "count": 0,
-        "checkedAt": "2026-11-27T20:25:54.095Z"
+        "checkedAt": "2026-11-28T05:19:17.909Z"
       },
       {
         "id": "hf-papers",
@@ -20,7 +20,7 @@
         "homeUrl": "https://huggingface.co/papers",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-27T20:25:54.142Z"
+        "checkedAt": "2026-11-28T05:19:18.026Z"
       },
       {
         "id": "arxiv-ai",
@@ -28,8 +28,8 @@
         "lang": "en",
         "homeUrl": "https://arxiv.org/list/cs.AI/recent",
         "status": "ok",
-        "count": 40,
-        "checkedAt": "2026-11-27T20:25:54.143Z"
+        "count": 0,
+        "checkedAt": "2026-11-28T05:19:18.027Z"
       },
       {
         "id": "openai-news",
@@ -38,7 +38,7 @@
         "homeUrl": "https://openai.com/news",
         "status": "ok",
         "count": 40,
-        "checkedAt": "2026-11-27T20:25:54.144Z"
+        "checkedAt": "2026-11-28T05:19:18.028Z"
       },
       {
         "id": "techcrunch-ai",
@@ -47,7 +47,7 @@
         "homeUrl": "https://techcrunch.com/category/artificial-intelligence/",
         "status": "ok",
         "count": 20,
-        "checkedAt": "2026-11-27T20:25:54.145Z"
+        "checkedAt": "2026-11-28T05:19:18.029Z"
       },
       {
         "id": "verge-ai",
@@ -56,7 +56,7 @@
         "homeUrl": "https://www.theverge.com/ai-artificial-intelligence",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T20:25:54.146Z"
+        "checkedAt": "2026-11-28T05:19:18.030Z"
       },
       {
         "id": "wired-ai",
@@ -65,7 +65,7 @@
         "homeUrl": "https://www.wired.com/tag/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T20:25:54.147Z"
+        "checkedAt": "2026-11-28T05:19:18.031Z"
       },
       {
         "id": "mit-ai",
@@ -74,7 +74,7 @@
         "homeUrl": "https://www.technologyreview.com/topic/artificial-intelligence/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T20:25:54.148Z"
+        "checkedAt": "2026-11-28T05:19:18.031Z"
       },
       {
         "id": "qbitai",
@@ -83,7 +83,7 @@
         "homeUrl": "https://www.qbitai.com/",
         "status": "ok",
         "count": 10,
-        "checkedAt": "2026-11-27T20:25:54.149Z"
+        "checkedAt": "2026-11-28T05:19:18.032Z"
       },
       {
         "id": "ifanr-ai",
@@ -92,7 +92,7 @@
         "homeUrl": "https://www.ifanr.com/",
         "status": "ok",
         "count": 3,
-        "checkedAt": "2026-11-27T20:25:54.151Z"
+        "checkedAt": "2026-11-28T05:19:18.033Z"
       }
     ]
   },
@@ -5591,6 +5591,18 @@
         "title": "Generation as Reverse Encoding",
         "summary": "Pretrained visual representations accelerate generative learning by abstracting away appearance and spatial detail. Yet the same abstraction makes the return to pixels far harder, shifting much of the burden onto a…",
         "url": "https://huggingface.co/papers/2611.34782",
+        "sourceId": "hf-papers",
+        "sourceName": "Hugging Face Papers",
+        "category": "opensource",
+        "lang": "en"
+      },
+      {
+        "id": "ai_65f9a6336a49",
+        "date": "2026-11-25",
+        "publishedAt": "2026-11-24T19:00:00.000Z",
+        "title": "LayoutRecall: Preserving Appearance in Multi-Round 3D Layout-Controlled Image Editing",
+        "summary": "3D layout-controlled image editing gives users explicit control over object placement and camera viewpoint. In a sequence of edits, however, the latest image can lose the appearance of an object when it is occluded or…",
+        "url": "https://huggingface.co/papers/2611.33885",
         "sourceId": "hf-papers",
         "sourceName": "Hugging Face Papers",
         "category": "opensource",
